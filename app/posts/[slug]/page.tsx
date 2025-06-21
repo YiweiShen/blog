@@ -7,7 +7,12 @@ export async function generateStaticParams() {
   return posts.map(post => ({ slug: post.slug }))
 }
 
-export default function PostPage({ params }) {
+interface PostPageProps {
+  params: {
+    slug: string
+  }
+}
+export default function PostPage({ params }: PostPageProps) {
   let post
   try {
     post = getPostBySlug(params.slug)
