@@ -1,6 +1,11 @@
 ---
 title: "Hello World"
 date: "2025-06-21"
-summary: "Welcome to my first post."
+summary: "A poem about a software developer."
 ---
-Welcome to my new blog! This is the first post written in Markdown.
+In lines of code, the mind takes flight,
+We craft tomorrow in silent night.
+Variables dance, algorithms sing,
+In digital realms, our dreams take wing.
+Through bugs and builds, we shape our art,
+A software developer at heart.
