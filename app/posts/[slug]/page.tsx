@@ -1,19 +1,13 @@
-import { getPostBySlug, getAllPosts, PostMeta } from '../../../lib/posts'
+import { getPostBySlug, getAllPosts } from '../../../lib/posts'
 import { notFound } from 'next/navigation'
 
-interface PageProps {
-  params: {
-    slug: string
-  }
+
+export async function generateStaticParams() {
+  const posts = getAllPosts()
+  return posts.map(post => ({ slug: post.slug }))
 }
 
-export function generateStaticParams() {
-  return getAllPosts().map((post: PostMeta) => ({
-    slug: post.slug,
-  }))
-}
-
-export default function PostPage({ params }: PageProps) {
+export default function PostPage({ params }) {
   let post
   try {
     post = getPostBySlug(params.slug)
