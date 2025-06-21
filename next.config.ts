@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
   },
   env: {
     NEXT_PUBLIC_BASE_PATH: isProd ? '/blog' : '',
+    NEXT_PUBLIC_BUILD_TIME: new Date().toISOString(),
   },
 }
 
