@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from 'next/link';
 import "./globals.css";
 
 const geistSans = Geist({
@@ -25,10 +26,45 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
-        <footer>
-          Built at {process.env.NEXT_PUBLIC_BUILD_TIME} | v{process.env.NEXT_PUBLIC_VERSION}
-        </footer>
+        <div className="flex flex-col min-h-screen">
+          <header className="bg-white dark:bg-gray-900 shadow">
+            <div className="container mx-auto px-4 py-4 flex flex-col sm:flex-row sm:justify-between sm:items-center">
+              <h1 className="text-xl font-bold">
+                <Link href="/" className="text-gray-900 dark:text-gray-100 hover:text-blue-500">
+                  MySite
+                </Link>
+              </h1>
+              <nav className="mt-2 sm:mt-0">
+                <ul className="flex flex-col sm:flex-row sm:space-x-4">
+                  <li className="mb-2 sm:mb-0">
+                    <Link href="/" className="text-gray-700 dark:text-gray-300 hover:text-blue-500">
+                      Home
+                    </Link>
+                  </li>
+                  <li className="mb-2 sm:mb-0">
+                    <Link href="/about" className="text-gray-700 dark:text-gray-300 hover:text-blue-500">
+                      About
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/contact" className="text-gray-700 dark:text-gray-300 hover:text-blue-500">
+                      Contact
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </header>
+          <main className="flex-grow">{children}</main>
+          <footer className="bg-gray-100 dark:bg-gray-800">
+            <div className="container mx-auto px-4 py-4 text-center text-sm text-gray-600 dark:text-gray-400">
+              &copy; {new Date().getFullYear()} MySite. All rights reserved.
+            </div>
+          </footer>
+          <div className="text-center text-xs text-gray-500 dark:text-gray-400 py-2">
+            Built at {process.env.NEXT_PUBLIC_BUILD_TIME} | v{process.env.NEXT_PUBLIC_VERSION}
+          </div>
+        </div>
       </body>
     </html>
   );
