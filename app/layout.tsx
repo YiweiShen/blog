@@ -26,7 +26,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
-        <footer>Built at {process.env.NEXT_PUBLIC_BUILD_TIME}</footer>
+        <footer>
+          Built at {process.env.NEXT_PUBLIC_BUILD_TIME} | v{process.env.NEXT_PUBLIC_VERSION}
+        </footer>
       </body>
     </html>
   );
