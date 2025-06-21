@@ -2,3 +2,14 @@
 
 # blog
 Experimental Next.js blog coding with Codez.
+
+## Single Post View
+
+This blog now supports Markdown-based posts stored in the `posts` directory at the project root. Front-matter fields (e.g. title, date, author) are parsed automatically, and content is rendered on a dynamic single-post page at `/posts/[slug]`.
+
+### Setup
+Install the required packages:
+```
+npm install gray-matter remark remark-html
+```
+Add your `.md` or `.mdx` files to the `posts` folder with YAML front-matter and Markdown content.
