@@ -3,9 +3,10 @@ import type { NextConfig } from 'next'
 const nextConfig: NextConfig = {
   /* config options here */
   output: 'export',
-  // Disable built-in Image Optimization for static export
+  // Use a custom image loader (e.g., Cloudinary) for optimizing images in a static export
   images: {
-    unoptimized: true,
+    loader: 'custom',
+    loaderFile: './my-loader.ts',
   },
 }
 
