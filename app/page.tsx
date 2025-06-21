@@ -1,4 +1,4 @@
-import { posts } from '../lib/posts';
+import { getAllPosts, PostMeta } from '../lib/posts';
 
 export const metadata = {
   title: 'Home Page with Post List',
@@ -6,6 +6,7 @@ export const metadata = {
 };
 
 export default function Home() {
+  const posts = getAllPosts();
   return (
     <div className="flex flex-col min-h-screen">
       <header className="bg-white dark:bg-gray-900 shadow">
@@ -30,9 +31,14 @@ export default function Home() {
       <main className="flex-grow container mx-auto px-4 py-8">
         <h2 className="text-4xl font-bold mb-6">Home Page</h2>
         <ul className="space-y-4">
-          {posts.map((post) => (
+          {posts.map((post: PostMeta) => (
             <li key={post.slug}>
-              <h3 className="text-2xl font-semibold">{post.title}</h3>
+              <a
+                href={`/posts/${post.slug}`}
+                className="text-2xl font-semibold text-blue-600 hover:underline"
+              >
+                {post.title}
+              </a>
               <p className="text-gray-500">{post.date}</p>
             </li>
           ))}
