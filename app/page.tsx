@@ -11,15 +11,14 @@ export default function Page() {
             <span className="mx-2">/</span>
             <Link href="/blog">Blog</Link>
             <span className="mx-2">/</span>
-            <Link href="/blog/education">Education</Link>
+            <Link href="/blog/jokes">Developer Jokes</Link>
           </nav>
-          <h1 className="text-4xl font-bold mb-4">Life Insurance Basics</h1>
+          <h1 className="text-4xl font-bold mb-4">Top Developer Jokes</h1>
           <p className="text-xl font-semibold mb-4">
-            Life insurance is one of the most important financial purchases an individual can make.
+            A curated list of developer jokes to brighten your coding day.
           </p>
           <p className="text-base text-gray-700">
-            In the event of a tragedy, life insurance proceeds can help pay bills, continue a family business,
-            finance a child's education, protect a spouse's retirement plans, and much more.
+            Whether you're debugging a tricky issue or waiting for a build to finish, these jokes are sure to bring a smile.
           </p>
         </div>
         <aside className="mt-8 lg:mt-0 w-full lg:w-64">
@@ -45,7 +44,7 @@ export default function Page() {
       <hr className="border-gray-200" />
       {/* Post meta date */}
       <section className="py-4">
-        <p className="text-xs text-gray-500">November 2018</p>
+        <p className="text-xs text-gray-500">June 2025</p>
       </section>
       {/* Main article content with related stories */}
       <section className="flex flex-col lg:flex-row gap-8 py-8">
@@ -53,36 +52,18 @@ export default function Page() {
           <div className="border p-4 rounded">
             <h2 className="text-sm font-bold mb-2">Related Stories</h2>
             <a href="#" className="block text-base text-green-600 hover:underline mb-1">
-              Tax reform presents new opportunities for tax professionals
+              Why do programmers prefer dark mode?
             </a>
-            <p className="text-xs text-gray-500">July 2016</p>
+            <p className="text-xs text-gray-500">August 2023</p>
           </div>
         </aside>
         <article className="flex-1 space-y-6 text-gray-800">
-          <p>
-            With the ever-changing landscape of taxes, it is growing increasingly difficult to understand how
-            legislation affects clients and could possibly impact their financial future. As a leader in the
-            financial services industry for the past 30 years, we get it. That’s why HD Vest Financial Services®
-            is constantly seeking ways to share the latest knowledge we acquire with you. We’ve created the{' '}
-            <a href="#" className="text-green-600 hover:underline">
-              Taxes &amp; Investments: Timely and Timeless Strategies Series
-            </a>{' '}
-            to share timely information and provide our Advisors and their clients with practical information and
-            ideas they can build on.
-          </p>
-          <p>
-            Life insurance is one of the most important financial purchases an individual can make. In the event of
-            a tragedy, life insurance proceeds can help pay bills, continue a family business, finance a child's
-            education, protect a spouse's retirement plans, and much more. If a wage earner passes away, a family
-            could be devastated financially without life insurance.
-          </p>
-          <h2 className="text-2xl font-bold mt-8 mb-4">What is life insurance?</h2>
-          <p>
-            A life insurance policy is a contract with an insurance company. In exchange for premiums (payments),
-            the insurance company provides a lump-sum payment, known as a death benefit, to beneficiaries in the
-            event of the insured’s death. This benefit is typically tax free to the beneficiaries and bypasses
-            probate.
-          </p>
+          <p>Why do programmers prefer dark mode? Because light attracts bugs.</p>
+          <h2 className="text-2xl font-bold mt-8 mb-4">What did the Java code say to the C code?</h2>
+          <p>You’ve got no class.</p>
+          <h2 className="text-2xl font-bold mt-8 mb-4">How many programmers does it take to change a light bulb?</h2>
+          <p>None. It's a hardware problem.</p>
+          <p>Remember: In code we trust, but braces we must.</p>
         </article>
       </section>
     </div>
