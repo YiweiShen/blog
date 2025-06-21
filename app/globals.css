@@ -24,3 +24,10 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+/* Footer styling for build time display */
+footer {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--foreground);
+  padding: 1rem 0;
+}
