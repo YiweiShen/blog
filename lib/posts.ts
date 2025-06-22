@@ -19,7 +19,8 @@ export interface Post extends PostMeta {
 }
 
 export function getPostSlugs(): string[] {
-  return fs.readdirSync(postsDirectory)
+  return fs
+    .readdirSync(postsDirectory)
     .filter((file) => file.endsWith('.md') || file.endsWith('.mdx'))
     .map((file) => file.replace(/\.mdx?$/, ''))
 }
@@ -33,11 +34,13 @@ export function getAllPosts(): PostMeta[] {
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const { data } = matter(fileContents)
     return {
-      slug,
       ...(data as PostMeta),
+      slug
     }
   })
-  return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  return posts.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  )
 }
 
 export function getPostBySlug(slug: string): Post {
@@ -57,8 +60,8 @@ export function getPostBySlug(slug: string): Post {
   const processed = remark().use(html).processSync(content)
   const contentHtml = processed.toString()
   return {
-    slug: realSlug,
     content: contentHtml,
     ...(data as PostMeta),
+    slug: realSlug
   }
 }

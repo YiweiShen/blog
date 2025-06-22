@@ -3,11 +3,16 @@ import { notFound } from 'next/navigation'
 
 export async function generateStaticParams() {
   const posts = getAllPosts()
-  return posts.map(post => ({ slug: post.slug }))
+  return posts.map((post) => ({ slug: post.slug }))
 }
 
-export default function PostPage({ params: { slug } }) {
+export default async function PostPage({
+  params
+}: {
+  params: { slug: string }
+}) {
   let post
+  const { slug } = await params
   try {
     post = getPostBySlug(slug)
   } catch {
@@ -17,7 +22,7 @@ export default function PostPage({ params: { slug } }) {
   const formattedDate = new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
-    day: 'numeric',
+    day: 'numeric'
   })
 
   return (
