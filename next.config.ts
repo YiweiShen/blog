@@ -3,7 +3,6 @@ import { version } from './package.json'
 
 const isProd = process.env.NODE_ENV === 'production'
 const nextConfig: NextConfig = {
-  output: 'export',
   basePath: isProd ? '/blog' : '',
   assetPrefix: isProd ? '/blog/' : '',
   // Disable built-in Image Optimization for static export
