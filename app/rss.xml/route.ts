@@ -15,9 +15,11 @@ function escapeXml(str: string): string {
 export const dynamic = 'force-static'
 export const revalidate = 3600
 
-export async function GET(request: Request) {
+export async function GET() {
   const posts = getAllPosts()
-  const origin = new URL(request.url).origin
+  const siteUrl = process.env.SITE_URL || ''
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+  const origin = `${siteUrl}${basePath}`
   const itemsXml = posts.map(post => `
     <item>
       <title>${escapeXml(post.title)}</title>
