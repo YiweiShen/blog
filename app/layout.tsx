@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from 'next/link';
 import "./globals.css";
+import ReadingProgress from "./components/ReadingProgress";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,8 +32,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <ReadingProgress />
         <div className="flex flex-col min-h-screen">
-          <header className="bg-white dark:bg-gray-900 shadow">
+          <header className="sticky top-0 bg-white dark:bg-gray-900 shadow z-50">
             <div className="container mx-auto px-4 py-4 flex flex-col sm:flex-row sm:justify-between sm:items-center">
               <h1 className="text-xl font-bold">
                 <Link href="/" className="text-gray-900 dark:text-gray-100 hover:text-blue-500">
