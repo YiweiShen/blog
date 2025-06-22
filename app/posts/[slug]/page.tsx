@@ -6,10 +6,10 @@ export async function generateStaticParams() {
   return posts.map(post => ({ slug: post.slug }))
 }
 
-export default function PostPage({ params }: { params: { slug: string } }) {
+export default function PostPage({ params: { slug } }) {
   let post
   try {
-    post = getPostBySlug(params.slug)
+    post = getPostBySlug(slug)
   } catch {
     notFound()
   }
