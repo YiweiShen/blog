@@ -6,24 +6,39 @@ import type { PostMeta } from '../../lib/posts';
 
 export default function SearchBox() {
   const [query, setQuery] = useState('');
+  const [allPosts, setAllPosts] = useState<PostMeta[]>([]);
   const [results, setResults] = useState<PostMeta[]>([]);
   const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    async function loadIndex() {
+      try {
+        const res = await fetch('/search-index.json');
+        if (res.ok) {
+          const data: PostMeta[] = await res.json();
+          setAllPosts(data);
+        }
+      } catch (err) {
+        console.error('Failed to load search index', err);
+      }
+    }
+    loadIndex();
+  }, []);
 
   useEffect(() => {
     if (!query) {
       setResults([]);
       return;
     }
-    const handler = setTimeout(async () => {
-      const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
-      if (res.ok) {
-        const data: PostMeta[] = await res.json();
-        setResults(data.slice(0, 5));
-        setShow(true);
-      }
+    const handler = setTimeout(() => {
+      const filtered = allPosts.filter((post) =>
+        post.title.toLowerCase().includes(query.toLowerCase())
+      );
+      setResults(filtered.slice(0, 5));
+      setShow(true);
     }, 300);
     return () => clearTimeout(handler);
-  }, [query]);
+  }, [query, allPosts]);
 
   return (
     <div className="relative">
