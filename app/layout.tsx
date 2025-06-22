@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Link from 'next/link';
+import Header from './components/Header';
 import "./globals.css";
 
 const geistSans = Geist({
@@ -32,35 +32,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <div className="flex flex-col min-h-screen">
-          <header className="bg-white dark:bg-gray-900 shadow">
-            <div className="container mx-auto px-4 py-4 flex flex-col sm:flex-row sm:justify-between sm:items-center">
-              <h1 className="text-xl font-bold">
-                <Link href="/" className="text-gray-900 dark:text-gray-100 hover:text-blue-500">
-                  MySite
-                </Link>
-              </h1>
-              <nav className="mt-2 sm:mt-0">
-                <ul className="flex flex-col sm:flex-row sm:space-x-4">
-                  <li className="mb-2 sm:mb-0">
-                    <Link href="/" className="text-gray-700 dark:text-gray-300 hover:text-blue-500">
-                      Home
-                    </Link>
-                  </li>
-                  <li className="mb-2 sm:mb-0">
-                    <Link href="/about" className="text-gray-700 dark:text-gray-300 hover:text-blue-500">
-                      About
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/contact" className="text-gray-700 dark:text-gray-300 hover:text-blue-500">
-                      Contact
-                    </Link>
-                  </li>
-                </ul>
-              </nav>
+          <Header />
+          <main className="flex-grow">
+            <div className="container mx-auto px-4 py-8">
+              {children}
             </div>
-          </header>
-          <main className="flex-grow">{children}</main>
+          </main>
           <footer className="bg-gray-100 dark:bg-gray-800">
             <div className="container mx-auto px-4 py-4 text-center text-sm text-gray-600 dark:text-gray-400">
               &copy; {new Date().getFullYear()} MySite. All rights reserved.
