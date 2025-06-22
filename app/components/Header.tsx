@@ -1,0 +1,53 @@
+"use client";
+import { useState } from "react";
+import Link from "next/link";
+
+export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  return (
+    <header className="bg-white dark:bg-gray-900 shadow">
+      <div className="container mx-auto px-4 py-4 flex items-center justify-between relative">
+        <h1 className="text-xl font-bold">
+          <Link href="/" className="text-gray-900 dark:text-gray-100 hover:text-blue-500">
+            MySite
+          </Link>
+        </h1>
+        <button
+          aria-label="Toggle menu"
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="sm:hidden text-gray-900 dark:text-gray-100 hover:text-blue-500 focus:outline-none"
+        >
+          {menuOpen ? (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
+        </button>
+        <nav className={`${menuOpen ? 'block' : 'hidden'} absolute top-full left-0 w-full bg-white dark:bg-gray-900 sm:relative sm:block`}>
+          <ul className="flex flex-col space-y-2 p-4 sm:flex-row sm:space-y-0 sm:space-x-4 sm:p-0">
+            <li>
+              <Link href="/" className="text-gray-700 dark:text-gray-300 hover:text-blue-500">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link href="/about" className="text-gray-700 dark:text-gray-300 hover:text-blue-500">
+                About
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className="text-gray-700 dark:text-gray-300 hover:text-blue-500">
+                Contact
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  );
+}
