@@ -1,18 +1,24 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import SearchBox from "./SearchBox";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white dark:bg-gray-900 shadow">
+    <header className="sticky top-0 bg-white dark:bg-gray-900 shadow z-50">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between relative">
-        <h1 className="text-xl font-bold">
-          <Link href="/" className="text-gray-900 dark:text-gray-100 hover:text-blue-500">
-            MySite
-          </Link>
-        </h1>
+        <div className="flex items-center space-x-4">
+          <h1 className="text-xl font-bold">
+            <Link href="/" className="text-gray-900 dark:text-gray-100 hover:text-blue-500">
+              MySite
+            </Link>
+          </h1>
+          <div className="hidden sm:block">
+            <SearchBox />
+          </div>
+        </div>
         <button
           aria-label="Toggle menu"
           onClick={() => setMenuOpen(!menuOpen)}
