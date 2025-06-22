@@ -1,14 +1,12 @@
 import { getPostBySlug, getAllPosts } from '../../../lib/posts'
 import { notFound } from 'next/navigation'
-import type { PageProps } from 'next/app'
-
 
 export async function generateStaticParams() {
   const posts = getAllPosts()
   return posts.map(post => ({ slug: post.slug }))
 }
 
-export default function PostPage({ params }: PageProps<{ slug: string }>) {
+export default function PostPage({ params }: { params: { slug: string } }) {
   let post
   try {
     post = getPostBySlug(params.slug)
