@@ -2,9 +2,9 @@ import { getPostBySlug, getAllPosts } from '../../../lib/posts'
 import { notFound } from 'next/navigation'
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export async function generateStaticParams() {
@@ -12,7 +12,8 @@ export async function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }))
 }
 
-export default function PostPage({ params }: PageProps) {
+export default async function PostPage(props: PageProps) {
+  const params = await props.params;
   let post
   try {
     post = getPostBySlug(params.slug)
