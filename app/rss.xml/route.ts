@@ -1,4 +1,4 @@
-import { getAllPosts } from '../../lib/posts'
+import { getAllPosts, getPostBySlug } from '../../lib/posts'
 
 function escapeXml(str: string): string {
   return str.replace(/[<>&'"']/g, (char) => {
@@ -16,7 +16,8 @@ export const dynamic = 'force-static'
 export const revalidate = 3600
 
 export async function GET() {
-  const posts = getAllPosts()
+  const postsMeta = getAllPosts()
+  const posts = postsMeta.map(meta => getPostBySlug(meta.slug))
   const siteUrl = process.env.SITE_URL || 'https://yiweishen.github.io'
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
   const origin = `${siteUrl}${basePath}`
@@ -27,11 +28,12 @@ export async function GET() {
       <guid>${origin}/posts/${post.slug}</guid>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
       ${post.summary ? `<description><![CDATA[${post.summary}]]></description>` : ''}
+      <content:encoded><![CDATA[${post.content}]]></content:encoded>
     </item>
   `).join('')
 
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
 <channel>
   <title>blog</title>
   <link>${origin}</link>
