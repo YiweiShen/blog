@@ -17,7 +17,7 @@ export const revalidate = 3600
 
 export async function GET() {
   const posts = getAllPosts()
-  const siteUrl = process.env.SITE_URL || ''
+  const siteUrl = process.env.SITE_URL || 'https://yiweishen.github.io'
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
   const origin = `${siteUrl}${basePath}`
   const itemsXml = posts.map(post => `
