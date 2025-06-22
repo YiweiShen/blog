@@ -11,6 +11,11 @@ export default function Home() {
   return (
     <div className="container mx-auto px-4 py-8">
       <h2 className="text-4xl font-bold mb-6">Home Page</h2>
+      <div className="mb-6">
+        <Link href="/rss.xml" className="text-blue-600 hover:underline">
+          Subscribe via RSS
+        </Link>
+      </div>
       <ul className="space-y-4">
         {posts.map((post: PostMeta) => (
           <li key={post.slug}>
