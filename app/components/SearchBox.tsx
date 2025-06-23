@@ -13,7 +13,8 @@ export default function SearchBox() {
   useEffect(() => {
     async function loadIndex() {
       try {
-        const res = await fetch('/search-index.json');
+        const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+        const res = await fetch(`${basePath}/search-index.json`);
         if (res.ok) {
           const data: PostMeta[] = await res.json();
           setAllPosts(data);
