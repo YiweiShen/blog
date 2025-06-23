@@ -9,7 +9,7 @@ const postsDirectory = path.join(process.cwd(), 'posts')
 export interface PostMeta {
   slug: string
   title: string
-  dates: string
+  date: string
   summary?: string
 }
 
