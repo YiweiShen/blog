@@ -1,5 +1,5 @@
 ---
-title: "Hello World"
+title: "Developer Poem"
 date: "2025-06-21"
 summary: "A poem about a software developer."
 ---
