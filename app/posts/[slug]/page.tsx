@@ -1,6 +1,7 @@
 import { getPostBySlug, getAllPosts } from '../../../lib/posts';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import CodeBlock from '../../components/CodeBlock';
 
 interface PageProps {
   params: Promise<{
@@ -55,7 +56,9 @@ export default async function PostPage(props: PageProps) {
         <time dateTime={date} className="text-gray-500">{formattedDate}</time>
         {summary && <p className="mt-4 text-lg text-gray-700">{summary}</p>}
       </header>
-      <section className="mt-8" dangerouslySetInnerHTML={{ __html: content }} />
+      <section className="mt-8">
+        <CodeBlock html={content} />
+      </section>
 
       <nav className="mt-8 flex justify-between">
         {older && (

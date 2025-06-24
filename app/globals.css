@@ -48,3 +48,48 @@ footer {
   color: var(--foreground);
   padding: 1rem 0;
 }
+/* Code block styling */
+.markdown pre {
+  background: var(--card-bg);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  position: relative;
+  margin: 1.5rem 0;
+}
+
+.markdown code {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+}
+
+.markdown code .line {
+  display: block;
+  padding-left: 3em;
+  position: relative;
+}
+
+.markdown code .line::before {
+  content: attr(data-line-number);
+  position: absolute;
+  left: 0;
+  width: 2em;
+  text-align: right;
+  margin-right: 1em;
+  color: #6b7280;
+}
+
+.copy-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: var(--card-bg);
+  color: var(--foreground);
+  border: none;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
