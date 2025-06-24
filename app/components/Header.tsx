@@ -51,6 +51,11 @@ export default function Header() {
                 Contact
               </Link>
             </li>
+            <li>
+              <Link href="/ui" className="text-gray-700 dark:text-gray-300 hover:text-blue-500">
+                UI Demo
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
