@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Header from './components/Header';
 import "./globals.css";
-import Script from 'next/script';
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -31,20 +29,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Script
-        id="theme-init"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `(function() {
-            try {
-              var theme = localStorage.getItem('theme');
-              if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-              }
-            } catch (e) {}
-          })();`,
-        }}
-      />
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <div className="flex flex-col min-h-screen">
           <Header />
@@ -53,12 +37,12 @@ export default function RootLayout({
               {children}
             </div>
           </main>
-          <footer className="bg-gray-100 dark:bg-gray-800">
-            <div className="container mx-auto px-4 py-4 text-center text-sm text-gray-600 dark:text-gray-400">
+          <footer className="bg-gray-100">
+            <div className="container mx-auto px-4 py-4 text-center text-sm text-gray-600">
               &copy; {new Date().getFullYear()} blog. All rights reserved.
             </div>
           </footer>
-          <div className="text-center text-xs text-gray-500 dark:text-gray-400 py-2">
+          <div className="text-center text-xs text-gray-500 py-2">
             Built at {process.env.NEXT_PUBLIC_BUILD_TIME} | v{process.env.NEXT_PUBLIC_VERSION}
           </div>
         </div>

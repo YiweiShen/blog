@@ -43,13 +43,6 @@
   color: #6B7280;
   background: #F9FAFB;
 }
-@media (prefers-color-scheme: dark) {
-  .markdown blockquote {
-    border-left-color: #374151;
-    color: #9CA3AF;
-    background: #1F2937;
-  }
-}
 .markdown img {
   display: block;
   max-width: 100%;
@@ -67,22 +60,11 @@
   border: 1px solid #D1D5DB;
   padding: 0.5em 1em;
 }
-@media (prefers-color-scheme: dark) {
-  .markdown th,
-  .markdown td {
-    border-color: #374151;
-  }
-}
 .markdown code {
   background: #F3F4F6;
   padding: 0.2em 0.4em;
   border-radius: 4px;
   font-size: 0.95em;
-}
-@media (prefers-color-scheme: dark) {
-  .markdown code {
-    background: #374151;
-  }
 }
 .markdown a {
   color: #1D4ED8;
@@ -90,14 +72,6 @@
 }
 .markdown a:hover {
   color: #1E40AF;
-}
-@media (prefers-color-scheme: dark) {
-  .markdown a {
-    color: #3B82F6;
-  }
-  .markdown a:hover {
-    color: #60A5FA;
-  }
 }
 
 :root {
@@ -113,23 +87,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --card-bg: #1e1e1e;
-    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-    --accordion-header-bg: #2a2a2a;
-  }
-}
 
-html.dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --card-bg: #1e1e1e;
-  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-  --accordion-header-bg: #2a2a2a;
-}
 
 body {
   background: var(--background);
