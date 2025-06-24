@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import SearchBox from "./SearchBox";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -55,6 +56,9 @@ export default function Header() {
               <Link href="/ui" className="text-gray-700 dark:text-gray-300 hover:text-blue-500">
                 UI Demo
               </Link>
+            </li>
+            <li>
+              <ThemeToggle />
             </li>
           </ul>
         </nav>

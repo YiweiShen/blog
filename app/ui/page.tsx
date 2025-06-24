@@ -1,28 +1,6 @@
-"use client";
-import { useState, useEffect } from 'react';
 import styles from './styles.module.css';
 
 export default function UIPage() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const saved = localStorage.getItem('theme');
-    const initial = saved === 'dark' || saved === 'light'
-      ? saved
-      : window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? 'dark'
-        : 'light';
-    setTheme(initial);
-    document.documentElement.classList.toggle('dark', initial === 'dark');
-  }, []);
-
-  const toggleTheme = () => {
-    const next = theme === 'light' ? 'dark' : 'light';
-    setTheme(next);
-    document.documentElement.classList.toggle('dark', next === 'dark');
-    localStorage.setItem('theme', next);
-  };
 
   const cards = [
     { title: 'Card One', description: 'This is the first card.' },
@@ -43,9 +21,6 @@ export default function UIPage() {
     <div className={styles.container}>
       <header className={styles.header}>
         <h1>UI Demo</h1>
-        <button onClick={toggleTheme} className={styles.themeToggle}>
-          Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme
-        </button>
       </header>
       <section>
         <h2>Responsive Card Grid</h2>
