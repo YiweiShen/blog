@@ -28,7 +28,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 bg-white dark:bg-gray-900 shadow z-50">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between relative">
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-6">
           <h1 className="text-xl font-bold">
             <Link href="/" className="text-gray-900 dark:text-gray-100 hover:text-blue-500">
               MySite
@@ -53,8 +53,8 @@ export default function Header() {
             </svg>
           )}
         </button>
-        <nav className={`${menuOpen ? 'block' : 'hidden'} absolute top-full left-0 w-full bg-white dark:bg-gray-900 sm:relative sm:block`}>
-          <ul className="flex flex-col space-y-2 p-4 sm:flex-row sm:space-y-0 sm:space-x-4 sm:p-0">
+        <nav className={`${menuOpen ? 'block' : 'hidden'} absolute top-full left-0 w-full sm:w-auto bg-white dark:bg-gray-900 sm:relative sm:block`}>
+          <ul className="flex flex-col space-y-2 p-4 sm:flex-row sm:space-y-0 sm:space-x-6 sm:p-0">
             <li>
               <Link href="/" className="text-gray-700 dark:text-gray-300 hover:text-blue-500">
                 Home
