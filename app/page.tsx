@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { getAllPosts, PostMeta } from '../lib/posts';
 
 export const metadata = {
-  title: 'Home Page with Post List',
-  description: 'Welcome to the blog home page with a list of posts',
+  title: 'Article List',
+  description: 'Welcome to the blog article list page',
 };
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-4xl font-bold">Home Page</h2>
+        <h2 className="text-4xl font-bold">Article List</h2>
         <Link href="/rss.xml" className="text-blue-600 hover:underline">
           Subscribe via RSS
         </Link>
