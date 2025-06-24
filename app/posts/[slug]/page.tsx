@@ -33,6 +33,7 @@ export default async function PostPage(props: PageProps) {
   const older = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
   const newer = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
   const relatedPosts = allPosts.filter((p) => p.slug !== slug).slice(0, 2);
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
   return (
     <article className="max-w-3xl mx-auto px-4 py-8">
@@ -80,7 +81,7 @@ export default async function PostPage(props: PageProps) {
                 className="flex items-center space-x-4 p-4 border rounded hover:shadow"
               >
                 <img
-                  src="/file.svg"
+                  src={`${basePath}/file.svg`}
                   alt={post.title}
                   className="w-16 h-16 object-cover rounded"
                 />
