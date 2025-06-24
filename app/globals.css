@@ -188,3 +188,32 @@ footer {
   border-radius: 4px;
   cursor: pointer;
 }
+/* Accordion Styles */
+.accordion {
+  margin-top: 1rem;
+}
+.accordion-item {
+  margin-bottom: 1rem;
+}
+.accordion-checkbox {
+  display: none;
+}
+.accordion-header {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: var(--accordion-header-bg);
+  cursor: pointer;
+  border-radius: 4px;
+}
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 1rem;
+  background: var(--card-bg);
+  border-radius: 0 0 4px 4px;
+}
+.accordion-checkbox:checked + .accordion-header + .accordion-content {
+  max-height: 200px;
+  padding: 0.75rem 1rem;
+}
