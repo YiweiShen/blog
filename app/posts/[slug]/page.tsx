@@ -75,26 +75,28 @@ export default async function PostPage(props: PageProps) {
 
       {relatedPosts.length > 0 && (
         <section className="mt-12">
-          <h2 className="text-2xl font-semibold mb-4">Related Posts</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {relatedPosts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/posts/${post.slug}`}
-                className="flex items-center space-x-4 p-4 border rounded hover:shadow"
-              >
-                <img
-                  src={`${basePath}/file.svg`}
-                  alt={post.title}
-                  className="w-16 h-16 object-cover rounded"
-                />
-                <div>
-                  <h3 className="text-lg font-medium text-blue-600 hover:underline">{post.title}</h3>
-                  <p className="text-gray-500">{post.date}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
+          <details className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
+            <summary className="p-4 text-2xl font-semibold cursor-pointer">Related Posts</summary>
+            <div className="p-4 pt-0 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {relatedPosts.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/posts/${post.slug}`}
+                  className="flex items-center space-x-4 p-4 border rounded hover:shadow"
+                >
+                  <img
+                    src={`${basePath}/file.svg`}
+                    alt={post.title}
+                    className="w-16 h-16 object-cover rounded"
+                  />
+                  <div>
+                    <h3 className="text-lg font-medium text-blue-600 hover:underline">{post.title}</h3>
+                    <p className="text-gray-500">{post.date}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </details>
         </section>
       )}
     </article>
