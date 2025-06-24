@@ -31,7 +31,7 @@ export default function Header() {
         <div className="flex items-center space-x-6">
           <h1 className="text-xl font-bold">
             <Link href="/" className="text-gray-900 dark:text-gray-100 hover:text-blue-500">
-              MySite
+              blog
             </Link>
           </h1>
           <div className="hidden sm:block">

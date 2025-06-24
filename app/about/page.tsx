@@ -10,7 +10,7 @@ export default function AboutPage() {
     <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow">
       <h2 className="text-4xl font-bold mb-4">About</h2>
       <p className="text-lg">
-        Welcome to MySite! This is a simple blog built with Next.js.
+        Welcome to blog! This is a simple blog built with Next.js.
       </p>
     </div>
   );
