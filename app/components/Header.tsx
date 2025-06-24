@@ -1,10 +1,29 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import SearchBox from "./SearchBox";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const saved = localStorage.getItem('theme');
+    const initial =
+      saved === 'dark' || saved === 'light'
+        ? (saved as 'light' | 'dark')
+        : window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light';
+    setTheme(initial);
+    document.documentElement.classList.toggle('dark', initial === 'dark');
+  }, []);
+  const toggleTheme = () => {
+    const next = theme === 'light' ? 'dark' : 'light';
+    setTheme(next);
+    document.documentElement.classList.toggle('dark', next === 'dark');
+    localStorage.setItem('theme', next);
+  };
 
   return (
     <header className="sticky top-0 bg-white dark:bg-gray-900 shadow z-50">
@@ -55,6 +74,14 @@ export default function Header() {
               <Link href="/ui" className="text-gray-700 dark:text-gray-300 hover:text-blue-500">
                 UI Demo
               </Link>
+            </li>
+            <li>
+              <button
+                onClick={toggleTheme}
+                className="text-gray-700 dark:text-gray-300 hover:text-blue-500 focus:outline-none"
+              >
+                {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
+              </button>
             </li>
           </ul>
         </nav>

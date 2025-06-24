@@ -36,7 +36,7 @@ export default async function PostPage(props: PageProps) {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
   return (
-    <article className="max-w-3xl mx-auto px-4 py-8">
+    <article className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow">
       <nav aria-label="Breadcrumb" className="text-sm mb-4">
         <ol className="list-none p-0 inline-flex">
           <li className="inline-flex items-center">

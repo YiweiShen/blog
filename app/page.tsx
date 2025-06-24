@@ -9,23 +9,29 @@ export const metadata = {
 export default function Home() {
   const posts = getAllPosts();
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h2 className="text-4xl font-bold mb-6">Home Page</h2>
-      <div className="mb-6">
+    <>
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-4xl font-bold">Home Page</h2>
         <Link href="/rss.xml" className="text-blue-600 hover:underline">
           Subscribe via RSS
         </Link>
       </div>
-      <ul className="space-y-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {posts.map((post: PostMeta) => (
-          <li key={post.slug}>
-            <Link href={`/posts/${post.slug}`} className="text-2xl font-semibold text-blue-600 hover:underline">
+          <div
+            key={post.slug}
+            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition"
+          >
+            <Link
+              href={`/posts/${post.slug}`}
+              className="text-2xl font-semibold text-blue-600 hover:underline"
+            >
               {post.title}
             </Link>
-            <p className="text-gray-500">{post.date}</p>
-          </li>
+            <p className="mt-2 text-gray-500">{post.date}</p>
+          </div>
         ))}
-      </ul>
-    </div>
+      </div>
+    </>
   );
 }
