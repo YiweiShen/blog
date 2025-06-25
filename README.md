@@ -2,3 +2,29 @@
 
 # blog
 Experimental Next.js blog coding with Codez.
+
+## Getting Started
+
+### Prerequisites
+- Node.js v16 or higher
+- npm (v7+) or Yarn
+
+### Installation
+```bash
+npm install
+npm run prepare
+```
+
+## Available Scripts
+- `npm run dev`         Start development server (with search index generation)
+- `npm run build`       Build for production (with search index generation)
+- `npm run export`      Export static files
+- `npm run start`       Start production server
+- `npm run lint`        Run ESLint
+- `npm run format`      Format code with Prettier
+- `npm run type-check`  Run TypeScript type checks
+- `make`               Use Makefile for convenience (see targets)
+
+## Code Quality
+- Pre-commit hooks via Husky and lint-staged
+- Consistent formatting with Prettier and EditorConfig
