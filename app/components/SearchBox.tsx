@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import Fuse from 'fuse.js';
 import Link from 'next/link';
 import type { PostMeta } from '../../lib/posts';
 
@@ -9,6 +10,14 @@ export default function SearchBox() {
   const [allPosts, setAllPosts] = useState<PostMeta[]>([]);
   const [results, setResults] = useState<PostMeta[]>([]);
   const [show, setShow] = useState(false);
+  const fuse = useMemo(() => {
+    if (allPosts.length === 0) return null;
+    return new Fuse<PostMeta>(allPosts, {
+      keys: ['title', 'summary', 'content'],
+      includeScore: true,
+      threshold: 0.4
+    });
+  }, [allPosts]);
 
   useEffect(() => {
     async function loadIndex() {
@@ -32,14 +41,22 @@ export default function SearchBox() {
       return;
     }
     const handler = setTimeout(() => {
-      const filtered = allPosts.filter((post) =>
-        post.title.toLowerCase().includes(query.toLowerCase())
-      );
-      setResults(filtered.slice(0, 5));
+      let filtered;
+      if (fuse) {
+        const fuseResults = fuse.search(query, { limit: 5 });
+        filtered = fuseResults.map((result) => result.item);
+      } else {
+        filtered = allPosts.filter((post) =>
+          post.title.toLowerCase().includes(query.toLowerCase()) ||
+          (post.summary?.toLowerCase().includes(query.toLowerCase())) ||
+          (post.content?.toLowerCase().includes(query.toLowerCase()))
+        ).slice(0, 5);
+      }
+      setResults(filtered);
       setShow(true);
     }, 300);
     return () => clearTimeout(handler);
-  }, [query, allPosts]);
+  }, [query, allPosts, fuse]);
 
   return (
     <div className="relative">
