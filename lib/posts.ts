@@ -11,6 +11,7 @@ export interface PostMeta {
   title: string
   date: string
   summary?: string
+  content?: string
 }
 
 export interface Post extends PostMeta {
