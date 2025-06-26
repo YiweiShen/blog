@@ -7,7 +7,10 @@
     "build": "node scripts/generateSearchIndex.mjs && next build",
     "export": "next export",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,css,json,html}\"",
+    "type-check": "tsc --noEmit",
+    "prepare": "husky install"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
@@ -29,6 +32,18 @@
     "eslint-config-next": "15.3.4",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.10",
-    "typescript": "^5"
+    "typescript": "^5",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.1",
+    "prettier": "^2.8.8"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{md,mdx,json,css,html}": [
+      "prettier --write"
+    ]
   }
 }
