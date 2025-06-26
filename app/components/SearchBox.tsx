@@ -15,7 +15,9 @@ export default function SearchBox() {
     return new Fuse<PostMeta>(allPosts, {
       keys: ['title', 'summary', 'content'],
       includeScore: true,
-      threshold: 0.4
+      threshold: 0.4,
+      ignoreLocation: true,
+      findAllMatches: true,
     });
   }, [allPosts]);
 
@@ -41,15 +43,29 @@ export default function SearchBox() {
       return;
     }
     const handler = setTimeout(() => {
-      let filtered;
+      const q = query.trim().toLowerCase();
+      const terms = q.split(/\s+/).filter(Boolean);
+      let filtered: PostMeta[];
       if (fuse) {
         const fuseResults = fuse.search(query, { limit: 5 });
-        filtered = fuseResults.map((result) => result.item);
+        if (fuseResults.length > 0) {
+          filtered = fuseResults.map((result) => result.item);
+        } else {
+          filtered = allPosts.filter((post) =>
+            terms.every((t) =>
+              post.title.toLowerCase().includes(t) ||
+              post.summary?.toLowerCase().includes(t) ||
+              post.content?.toLowerCase().includes(t)
+            )
+          ).slice(0, 5);
+        }
       } else {
         filtered = allPosts.filter((post) =>
-          post.title.toLowerCase().includes(query.toLowerCase()) ||
-          (post.summary?.toLowerCase().includes(query.toLowerCase())) ||
-          (post.content?.toLowerCase().includes(query.toLowerCase()))
+          terms.every((t) =>
+            post.title.toLowerCase().includes(t) ||
+            post.summary?.toLowerCase().includes(t) ||
+            post.content?.toLowerCase().includes(t)
+          )
         ).slice(0, 5);
       }
       setResults(filtered);
