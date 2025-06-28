@@ -16,7 +16,7 @@ npm run prepare
 ```
 
 ## Available Scripts
-- `npm run dev`         Start development server (with search index generation)
+- `npm run dev`         Start development server (with live search index generation)
 - `npm run build`       Build for production (with search index generation)
 - `npm run export`      Export static files
 - `npm run start`       Start production server

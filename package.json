@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node scripts/generateSearchIndex.mjs && next dev --turbopack",
+    "dev": "concurrently \"node scripts/generateSearchIndex.mjs --watch\" \"next dev --turbopack\"",
     "build": "node scripts/generateSearchIndex.mjs && next build",
     "export": "next export",
     "start": "next start",
@@ -34,6 +34,7 @@
     "tailwindcss": "^4.1.10",
     "typescript": "^5",
     "husky": "^8.0.3",
+    "concurrently": "^8.2.0",
     "lint-staged": "^13.2.1",
     "prettier": "^2.8.8"
   },
