@@ -4,6 +4,7 @@ import path from 'path';
 import matter from 'gray-matter';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
+const outputPath = path.join(process.cwd(), 'public', 'search-index.json');
 
 function getAllPostsMeta() {
   const files = fs
@@ -26,7 +27,27 @@ function getAllPostsMeta() {
   return posts;
 }
 
-const postsMeta = getAllPostsMeta();
-const outputPath = path.join(process.cwd(), 'public', 'search-index.json');
-fs.writeFileSync(outputPath, JSON.stringify(postsMeta));
-console.log(`Generated search-index.json with ${postsMeta.length} entries.`);
+function generate() {
+  const postsMeta = getAllPostsMeta();
+  fs.writeFileSync(outputPath, JSON.stringify(postsMeta));
+  console.log(`Generated search-index.json with ${postsMeta.length} entries.`);
+}
+
+function watch() {
+  generate();
+  console.log(`Watching ${postsDirectory} for changes...`);
+  fs.watch(postsDirectory, (eventType, filename) => {
+    if (!filename) return;
+    if (filename.endsWith('.md') || filename.endsWith('.mdx')) {
+      console.log(`Detected ${eventType} on ${filename}, regenerating search index...`);
+      generate();
+    }
+  });
+}
+
+const args = process.argv.slice(2);
+if (args.includes('--watch') || args.includes('-w')) {
+  watch();
+} else {
+  generate();
+}
