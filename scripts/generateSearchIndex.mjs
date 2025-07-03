@@ -3,36 +3,52 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
+/**
+ * Directory containing source markdown files for posts.
+ */
 const postsDirectory = path.join(process.cwd(), 'posts');
+/**
+ * Filepath where the generated search index will be written.
+ */
 const outputPath = path.join(process.cwd(), 'public', 'search-index.json');
 
+/**
+ * Reads all markdown/mdx files in the posts directory and returns their metadata.
+ * @returns Array of post metadata objects with slug, title, date, summary, and raw content.
+ */
 function getAllPostsMeta() {
-  const files = fs
+  const postFiles = fs
     .readdirSync(postsDirectory)
-    .filter(file => file.endsWith('.md') || file.endsWith('.mdx'));
-  const posts = files.map(file => {
+    .filter((file) => file.endsWith('.md') || file.endsWith('.mdx'));
+  const postsMeta = postFiles.map((file) => {
     const slug = file.replace(/\.mdx?$/, '');
-    const fullPath = path.join(postsDirectory, file);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
-    const { data, content } = matter(fileContents);
+    const filePath = path.join(postsDirectory, file);
+    const fileContents = fs.readFileSync(filePath, 'utf8');
+    const { data: frontMatter, content } = matter(fileContents);
     return {
       slug,
-      title: data.title,
-      date: data.date,
-      summary: data.summary,
-      content
+      title: frontMatter.title,
+      date: frontMatter.date,
+      summary: frontMatter.summary,
+      content,
     };
   });
-  posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  return posts;
+  postsMeta.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  return postsMeta;
 }
 
+/**
+ * Generates the search index JSON file based on post metadata.
+ */
 function generate() {
   const postsMeta = getAllPostsMeta();
   fs.writeFileSync(outputPath, JSON.stringify(postsMeta));
   console.log(`Generated search-index.json with ${postsMeta.length} entries.`);
 }
 
+/**
+ * Watches the posts directory and regenerates the search index on file changes.
+ */
 function watch() {
   generate();
   console.log(`Watching ${postsDirectory} for changes...`);
