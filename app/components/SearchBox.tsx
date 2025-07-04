@@ -1,78 +1,39 @@
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
-import Fuse from 'fuse.js';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import type { PostMeta } from '../../lib/posts';
 
 export default function SearchBox() {
   const [query, setQuery] = useState('');
-  const [allPosts, setAllPosts] = useState<PostMeta[]>([]);
   const [results, setResults] = useState<PostMeta[]>([]);
   const [showResults, setShowResults] = useState(false);
-  const fuse = useMemo(() => {
-    if (allPosts.length === 0) return null;
-    return new Fuse<PostMeta>(allPosts, {
-      keys: ['title', 'summary', 'content'],
-      includeScore: true,
-      threshold: 0.4,
-      ignoreLocation: true,
-      findAllMatches: true,
-    });
-  }, [allPosts]);
-
-  useEffect(() => {
-    async function loadIndex() {
-      try {
-        const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
-        const res = await fetch(`${basePath}/search-index.json`);
-        if (res.ok) {
-          const data: PostMeta[] = await res.json();
-          setAllPosts(data);
-        }
-      } catch (err) {
-        console.error('Failed to load search index', err);
-      }
-    }
-    loadIndex();
-  }, []);
 
   useEffect(() => {
     if (!query) {
       setResults([]);
+      setShowResults(false);
       return;
     }
-    const handler = setTimeout(() => {
-      const q = query.trim().toLowerCase();
-      const terms = q.split(/\s+/).filter(Boolean);
-      let filtered: PostMeta[];
-      if (fuse) {
-        const fuseResults = fuse.search(q, { limit: 5 });
-        if (fuseResults.length > 0) {
-          filtered = fuseResults.map((result) => result.item);
-        } else {
-          filtered = allPosts.filter((post) =>
-            terms.every((t) =>
-              post.title.toLowerCase().includes(t) ||
-              post.summary?.toLowerCase().includes(t) ||
-              post.content?.toLowerCase().includes(t)
-            )
-          ).slice(0, 5);
+
+    const handler = setTimeout(async () => {
+      try {
+        const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+        const res = await fetch(
+          `${basePath}/api/search?q=${encodeURIComponent(query)}`
+        );
+        if (res.ok) {
+          const data: PostMeta[] = await res.json();
+          setResults(data);
+          setShowResults(true);
         }
-      } else {
-        filtered = allPosts.filter((post) =>
-          terms.every((t) =>
-            post.title.toLowerCase().includes(t) ||
-            post.summary?.toLowerCase().includes(t) ||
-            post.content?.toLowerCase().includes(t)
-          )
-        ).slice(0, 5);
+      } catch (err) {
+        console.error('Search error', err);
       }
-      setResults(filtered);
-      setShowResults(true);
     }, 300);
+
     return () => clearTimeout(handler);
-  }, [query, allPosts, fuse]);
+  }, [query]);
 
   return (
     <div className="relative">
