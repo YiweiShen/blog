@@ -12,10 +12,15 @@ hljs.registerLanguage('typescript', typescript);
 hljs.registerLanguage('bash', bash);
 hljs.registerLanguage('python', python);
 
+/** Props for the CodeBlock component. */
 interface CodeBlockProps {
+  /** HTML string representing pre-rendered code to display. */
   html: string;
 }
 
+/**
+ * Renders HTML code content with syntax highlighting, line numbers, and a copy button.
+ */
 export default function CodeBlock({ html }: CodeBlockProps) {
   useEffect(() => {
     document.querySelectorAll('pre code').forEach((block) => {
