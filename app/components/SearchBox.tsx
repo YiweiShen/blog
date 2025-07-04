@@ -2,12 +2,39 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Fuse from 'fuse.js';
 import type { PostMeta } from '../../lib/posts';
 
 export default function SearchBox() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<PostMeta[]>([]);
   const [showResults, setShowResults] = useState(false);
+  const [allPosts, setAllPosts] = useState<PostMeta[]>([]);
+  const [fuse, setFuse] = useState<Fuse<PostMeta> | null>(null);
+
+  useEffect(() => {
+    const loadIndex = async () => {
+      try {
+        const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+        const res = await fetch(`${basePath}/search-index.json`);
+        if (res.ok) {
+          const posts: PostMeta[] = await res.json();
+          setAllPosts(posts);
+          const fuseInstance = new Fuse(posts, {
+            keys: ['title', 'summary'],
+            includeScore: true,
+            threshold: 0.4,
+            ignoreLocation: true,
+            findAllMatches: true,
+          });
+          setFuse(fuseInstance);
+        }
+      } catch (error) {
+        console.error('Error loading search index', error);
+      }
+    };
+    loadIndex();
+  }, []);
 
   useEffect(() => {
     if (!query) {
@@ -15,25 +42,30 @@ export default function SearchBox() {
       setShowResults(false);
       return;
     }
+    if (!fuse) return;
 
-    const handler = setTimeout(async () => {
-      try {
-        const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
-        const res = await fetch(
-          `${basePath}/api/search?q=${encodeURIComponent(query)}`
-        );
-        if (res.ok) {
-          const data: PostMeta[] = await res.json();
-          setResults(data);
-          setShowResults(true);
-        }
-      } catch (err) {
-        console.error('Search error', err);
+    const handler = setTimeout(() => {
+      const q = query.trim();
+      const fuseResults = fuse.search(q, { limit: 5 });
+      let matches: PostMeta[];
+      if (fuseResults.length > 0) {
+        matches = fuseResults.map((r) => r.item);
+      } else {
+        const qLower = q.toLowerCase();
+        matches = allPosts
+          .filter(
+            (post) =>
+              (post.title && post.title.toLowerCase().includes(qLower)) ||
+              (post.summary && post.summary.toLowerCase().includes(qLower))
+          )
+          .slice(0, 5);
       }
+      setResults(matches);
+      setShowResults(true);
     }, 300);
 
     return () => clearTimeout(handler);
-  }, [query]);
+  }, [query, fuse, allPosts]);
 
   return (
     <div className="relative">
