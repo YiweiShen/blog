@@ -3,37 +3,66 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import type { PostMeta } from '../../lib/posts';
+import Fuse from 'fuse.js';
 
 export default function SearchBox() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<PostMeta[]>([]);
   const [showResults, setShowResults] = useState(false);
+  const [searchIndex, setSearchIndex] = useState<PostMeta[] | null>(null);
+
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
   useEffect(() => {
-    if (!query) {
+    async function loadIndex() {
+      if (!searchIndex) {
+        try {
+          const res = await fetch(`${basePath}/search-index.json`);
+          if (res.ok) {
+            const data: PostMeta[] = await res.json();
+            setSearchIndex(data);
+          } else {
+            console.error('Failed to load search index:', res.statusText);
+          }
+        } catch (err) {
+          console.error('Error loading search index', err);
+        }
+      }
+    }
+    loadIndex();
+  }, [basePath, searchIndex]);
+
+  useEffect(() => {
+    if (!query || !searchIndex) {
       setResults([]);
       setShowResults(false);
       return;
     }
-
-    const handler = setTimeout(async () => {
-      try {
-        const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
-        const res = await fetch(
-          `${basePath}/api/search?q=${encodeURIComponent(query)}`
-        );
-        if (res.ok) {
-          const data: PostMeta[] = await res.json();
-          setResults(data);
-          setShowResults(true);
-        }
-      } catch (err) {
-        console.error('Search error', err);
-      }
-    }, 300);
-
-    return () => clearTimeout(handler);
-  }, [query]);
+    const fuse = new Fuse(searchIndex, {
+      keys: ['title', 'summary', 'content'],
+      includeScore: true,
+      threshold: 0.4,
+      ignoreLocation: true,
+      findAllMatches: true,
+    });
+    const fuseResults = fuse.search(query, { limit: 5 });
+    if (fuseResults.length > 0) {
+      setResults(fuseResults.map((r) => r.item));
+    } else {
+      const terms = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      const fallback = searchIndex
+        .filter((post) =>
+          terms.every((t) =>
+            (post.title && post.title.toLowerCase().includes(t)) ||
+            (post.summary && post.summary.toLowerCase().includes(t)) ||
+            (post.content && post.content.toLowerCase().includes(t))
+          )
+        )
+        .slice(0, 5);
+      setResults(fallback);
+    }
+    setShowResults(true);
+  }, [query, searchIndex]);
 
   return (
     <div className="relative">
