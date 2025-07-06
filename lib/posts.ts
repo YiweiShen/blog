@@ -1,3 +1,4 @@
+import escapeHtml from 'escape-html'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
@@ -28,7 +29,7 @@ export function getPostSlugs(): string[] {
   return fs
     .readdirSync(postsDirectory)
     .filter((file) => file.endsWith('.md') || file.endsWith('.mdx'))
-    .map((file) => file.replace(/\.mdx?$/, ''))
+    .map((file) => escapeHtml(file.replace(/\.mdx?$/, '')))
 }
 
 /**

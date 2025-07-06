@@ -1,3 +1,4 @@
+import escapeHtml from 'escape-html';
 import { getPostBySlug, getAllPosts } from '../../../lib/posts';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -81,7 +82,7 @@ export default async function PostPage(props: PageProps) {
               {relatedPosts.map((post) => (
                 <Link
                   key={post.slug}
-                  href={`/posts/${post.slug}`}
+                  href={`/posts/${escapeHtml(post.slug)}`}
                   className="flex items-center space-x-4 p-4 border rounded hover:shadow"
                 >
                   <img
