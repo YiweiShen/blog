@@ -3,11 +3,16 @@
 # blog
 Experimental Next.js blog coding with Codez.
 
+## Table of Contents
+- [Getting Started](#getting-started)
+- [Available Scripts](#available-scripts)
+- [Code Quality](#code-quality)
+
 ## Getting Started
 
 ### Prerequisites
 - Node.js v16 or higher
-- npm (v7+) or Yarn
+- npm (v7+) or Yarn v1+
 
 ### Installation
 ```bash

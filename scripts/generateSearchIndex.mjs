@@ -14,7 +14,7 @@ const outputPath = path.join(process.cwd(), 'public', 'search-index.json');
 
 /**
  * Reads all markdown/mdx files in the posts directory and returns their metadata.
- * @returns Array of post metadata objects with slug, title, date, summary, and raw content.
+ * @returns Array of post metadata objects with slug, title, date, summary, and markdown content.
  */
 function getAllPostsMeta() {
   const postFiles = fs
@@ -40,30 +40,41 @@ function getAllPostsMeta() {
 /**
  * Generates the search index JSON file based on post metadata.
  */
-function generate() {
+/**
+ * Generate the search index file from post metadata.
+ * Writes a formatted JSON array to the configured output path.
+ */
+function generateSearchIndex() {
   const postsMeta = getAllPostsMeta();
-  fs.writeFileSync(outputPath, JSON.stringify(postsMeta));
-  console.log(`Generated search-index.json with ${postsMeta.length} entries.`);
+  try {
+    fs.writeFileSync(outputPath, JSON.stringify(postsMeta, null, 2));
+    console.log(`Generated search-index.json with ${postsMeta.length} entries.`);
+  } catch (error) {
+    console.error(`Failed to write search index: ${(error).message}`);
+    process.exit(1);
+  }
 }
 
 /**
  * Watches the posts directory and regenerates the search index on file changes.
  */
-function watch() {
-  generate();
-  console.log(`Watching ${postsDirectory} for changes...`);
+/**
+ * Watch the posts directory for changes and regenerate the search index on updates.
+ */
+function watchSearchIndex() {
+  generateSearchIndex();
+  console.log(`Watching posts directory for changes at ${postsDirectory}...`);
   fs.watch(postsDirectory, (eventType, filename) => {
-    if (!filename) return;
-    if (filename.endsWith('.md') || filename.endsWith('.mdx')) {
+    if (filename && (filename.endsWith('.md') || filename.endsWith('.mdx'))) {
       console.log(`Detected ${eventType} on ${filename}, regenerating search index...`);
-      generate();
+      generateSearchIndex();
     }
   });
 }
 
 const args = process.argv.slice(2);
 if (args.includes('--watch') || args.includes('-w')) {
-  watch();
+  watchSearchIndex();
 } else {
-  generate();
+  generateSearchIndex();
 }
