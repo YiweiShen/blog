@@ -1,7 +1,7 @@
 ---
 theme: seriph
-background: https://cover.sli.dev
-title: Mastering GitFlow: A Structured Workflow for Scalable Git Development
+background: "https://cover.sli.dev"
+title: "Mastering GitFlow: A Structured Workflow for Scalable Git Development"
 info: |
   A guide to implementing GitFlow, covering installation, branch management, core commands, and best practices.
 class: text-center
