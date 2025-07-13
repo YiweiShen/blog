@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"node scripts/generateSearchIndex.mjs --watch\" \"next dev --turbopack\"",
-    "build": "node scripts/generateSearchIndex.mjs && next build && cd slidev && slidev build --out ../out/slidev",
+    "build": "node scripts/generateSearchIndex.mjs && next build && cd slidev && slidev build --out ../out/slidev --base /blog/",
     "export": "next export",
     "start": "next start",
     "lint": "next lint",
