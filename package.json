@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"node scripts/generateSearchIndex.mjs --watch\" \"next dev --turbopack\"",
-    "build": "node scripts/generateSearchIndex.mjs && next build",
+    "build": "node scripts/generateSearchIndex.mjs && next build && cd slidev && slidev build --out ../out/slidev",
     "export": "next export",
     "start": "next start",
     "lint": "next lint",
@@ -13,6 +13,10 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@slidev/cli": "^52.0.0",
+    "@slidev/theme-default": "^0.25.0",
+    "@slidev/theme-seriph": "^0.25.0",
+    "escape-html": "^1.0.3",
     "fuse.js": "^6.6.2",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.11.1",
@@ -21,7 +25,7 @@
     "react-dom": "^19.0.0",
     "remark": "^14.0.2",
     "remark-html": "^15.0.2",
-    "escape-html": "^1.0.3"
+    "vue": "^3.5.17"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.10",
