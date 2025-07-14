@@ -1,9 +1,9 @@
 ---
 theme: seriph
 background: "https://cover.sli.dev"
-title: "Mastering GitFlow: A Structured Workflow for Scalable Git Development"
+title: "Gemini CLI Getting Started: Bringing an AI Assistant into Your Terminal"
 info: |
-  A guide to implementing GitFlow, covering installation, branch management, core commands, and best practices.
+  A quick start guide to Gemini CLI, from installation and configuration to usage patterns and advanced scripting.
 class: text-center
 drawings:
   persist: false
@@ -11,151 +11,122 @@ transition: slide-left
 mdc: true
 ---
 
-# Mastering GitFlow: A Structured Workflow for Scalable Git Development
+# Gemini CLI Getting Started: Bringing an AI Assistant into Your Terminal
 
-> Collaborating on complex software projects can get messy without a clear branching strategy. GitFlow, introduced by Vincent Driessen in 2010, provides a robust, opinionated workflow built on Git’s branching model. It helps teams:
-
-- Enforce clear boundaries between ongoing work and production-ready code
-- Support parallel feature development, scheduled releases, and urgent hotfixes
-- Maintain high-quality standards with minimal merge conflicts
+> A quick start guide to Gemini CLI, from installation and configuration to usage patterns and advanced scripting.
 
 ---
 
-# Why GitFlow?
+# 1. Why Choose Gemini CLI?
 
-1. **Clarity**
-   - `develop` houses integrated code that’s still evolving.
-   - `main` (or `master`) always reflects production-ready code.
-
-2. **Parallel Workstreams**
-   - Feature branches off `develop`
-   - Release branches prepare stabilization
-   - Hotfix branches patch `main`
-
-3. **Process Discipline**
-   - Standardized naming and merge practices
-   - Automated tooling (git-flow extensions) to scaffold branches
+- **Large Context Support**: Load millions of tokens of code, documentation, or commit history at once.
+- **Instant Results**: Generate ready-to-use functions, config snippets, and script templates on demand.
+- **Seamless Scripting**: Wrap frequent interactions into shell functions or Makefile targets for one-command workflows.
+- **Extensible Toolchain**: Mount custom scripts or internal tools and invoke them directly within conversations.
 
 ---
 
-# Installing and Initializing GitFlow
+# 2. Installation & Configuration
 
-**Install the extension**
+## Install Gemini CLI
+Ensure you have Node.js (>=18) or Yarn:
+```bash
+# Quick test without global install
+npx @google/gemini-cli
 
-- macOS (Homebrew):
-  ```bash
-  brew install git-flow-avh
-  ```
-- Linux (APT):
-  ```bash
-  sudo apt-get install git-flow
-  ```
+# Global install
+npm install -g @google/gemini-cli
+# or
+yarn global add @google/gemini-cli
+```
 
-**Initialize in your repo**
+Verify installation:
+```bash
+gemini --version  # should output v0.x.x
+```
+
+## Authentication & API Key
+On first run, `gemini` will open your browser for Google sign-in and store credentials locally.
+To use a custom API key for higher quotas:
+```bash
+export GEMINI_API_KEY="YOUR_API_KEY"
+```
+> **Dad Joke:**
+> AI Assistant: "Need higher privileges?"
+> Programmer: "Want root?"
+> AI: "Don't make me look up a Facebook account!" 😄
+
+---
+
+# 3. Basic Interactive Usage
 
 ```bash
-git init                # if you haven’t already
-git checkout -b develop # create “develop” if needed
-git flow init
+cd ~/my-project
+gemini
+> Please give me an overview of the project structure and highlight the core modules.
 ```
-When prompted, you can accept the defaults:
+
+**Example Response:**
 ```text
-Branch name for production releases: [main]
-Branch name for “next release” development: [develop]
-Feature branches? feature/
-Release branches? release/
-Hotfix branches? hotfix/
-Support branches? support/
-Version tag prefix? [v]
+- src/         Main application code
+  ├─ routes/   Route definitions
+  ├─ services/ Business logic
+  └─ models/   Data layer
+- tests/       Unit & integration tests
+- scripts/     Deployment & migration scripts
 ```
 
----
+Ask for code scaffolding:
+```bash
+> Write an Express middleware that validates `req.body` types and strips out `password` and `token` fields.
+```
 
-# The GitFlow Branching Model
-
-- **main**
-  Production code, only updated via merges from release or hotfix branches.
-- **develop**
-  Integration branch for upcoming releases; all finished features go here.
-- **feature/**
-  Created off `develop` for new functionality (e.g., `feature/cool-login`).
-- **release/**
-  Spawned from `develop` when you’re feature-complete; used to stabilize, fix bugs, update docs, bump version numbers (e.g., `release/1.2.0`).
-- **hotfix/**
-  Branched from `main` to address urgent production bugs; merged back into both `main` and `develop` (e.g., `hotfix/urgent-fix`).
+Copy the generated code directly into `src/middleware/sanitize.js`.
 
 ---
 
-# Daily Workflow with GitFlow Commands
-
-## Working on a Feature
+# 4. Inline Mode: One-Liner Commands
 
 ```bash
-git flow feature start cool-login
-# … work on code, commit changes …
-git flow feature finish cool-login
+gemini --inline "Generate a Python script that downloads files from a list of URLs and runs them concurrently."
 ```
 
-- `start`: creates `feature/cool-login` from `develop`.
-- `finish`: merges back into `develop` and deletes the feature branch.
+The script is printed directly in your terminal, ready to copy or redirect to a file.
 
 ---
 
-# Daily Workflow with GitFlow Commands
+# 5. Scripting Conversations
 
-## Preparing a Release
-
+Wrap frequent queries into shell functions:
 ```bash
-git flow release start 1.2.0
-# bump version number, update CHANGELOG, QA…
-git flow release finish 1.2.0
+function analyze() {
+  gemini --inline "Read $1 and provide performance optimization suggestions."
+}
+
+# Usage:
+analyze src/utils/heavy.js
 ```
 
-- `start`: creates `release/1.2.0` from `develop`.
-- `finish`:
-  - merges into `main` and tags `v1.2.0`
-  - merges into `develop` to carry over fixes
-  - deletes the `release/1.2.0` branch
+---
+
+# 6. Advanced Tips
+
+- **Mount Custom Commands**: Use MCP plugins to integrate your team’s CLI tools or internal scripts for direct invocation within Gemini conversations.
+- **Multi-Modal Input**: Drag & drop PDFs, Markdown files, or images into the CLI (with Multimodal access) for structure extraction and annotations.
 
 ---
 
-# Daily Workflow with GitFlow Commands
+# Summary
 
-## Patching Production
+1. Install: `npm install -g @google/gemini-cli`
+2. Authenticate: First-run OAuth or set `GEMINI_API_KEY`
+3. Interactive: `gemini` | Inline: `gemini --inline`
+4. Script & Extend: Shell functions, Makefile targets, plugins
 
-```bash
-git flow hotfix start urgent-fix
-# patch bug in production
-git flow hotfix finish urgent-fix
-```
-
-- `start`: creates `hotfix/urgent-fix` from `main`.
-- `finish`:
-  - merges into `main` and tags the new version
-  - merges into `develop`
-  - deletes the `hotfix/urgent-fix` branch
+Use Gemini CLI as your always-on AI assistant to speed up development, automate tedious tasks, and even share late-night jokes!
 
 ---
 
-# Tips & Best Practices
+# Try It Today!
 
-- Keep feature branches small and focused; merge often.
-- Regularly pull/update `develop` to minimize drift.
-- Tag releases consistently for easy rollback.
-- Automate tests and CI on merges (especially `develop` → `release` and `release` → `main`).
-- Use clear, descriptive branch names: `feature/login-oauth`, `hotfix/203-login-error`.
-
----
-
-# When to Avoid GitFlow
-
-- Very small teams or solo projects may find GitFlow too heavyweight.
-- Rapid continuous-deployment pipelines often favor simpler branching (e.g., trunk-based development).
-
----
-
-# Conclusion
-
-GitFlow brings discipline and structure to Git-based development by clearly separating feature work, release preparation, and bug fixing. It scales well for multi-developer projects with scheduled releases, helping you maintain code quality and project transparency. With just a few commands (`feature start/finish`, `release start/finish`, `hotfix start/finish`), your team can focus on delivering value—while GitFlow keeps your branches tidy and your workflow predictable.
-
-Ready to give GitFlow a spin? Initialize it in your next project and experience the power of a standardized branching strategy. Happy coding!
+Give Gemini CLI a spin and transform your terminal into a powerful AI-driven assistant.
