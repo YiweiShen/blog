@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
 /* Markdown content styling */
 .markdown {
@@ -74,26 +70,56 @@
   color: #1E40AF;
 }
 
+
+
+
+/* Design Tokens */
 :root {
-  --card-bg: #ffffff;
-  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --accordion-header-bg: #f1f1f1;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --bg: #FFFFFF;
+  --surface: #F8F8F8;
+  --text-primary: #222222;
+  --text-secondary: #555555;
+  --foreground: var(--text-primary);
+  --accent: #4A90E2;
+  --accent-hover: #357ABD;
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --card-bg: #FFFFFF;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Global Resets */
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
 }
 
-
-
+/* Typography & Layout */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
 }
+section {
+  padding: 4rem 0;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  color: #111111;
+  margin-bottom: 1rem;
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.5rem; }
+h3 { font-size: 2rem; }
+h4 { font-size: 1.5rem; }
 /* Footer styling for build time display */
 footer {
   text-align: center;
@@ -146,32 +172,100 @@ footer {
   border-radius: 4px;
   cursor: pointer;
 }
-/* Accordion Styles */
-.accordion {
-  margin-top: 1rem;
+/* Buttons */
+.button {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  background-color: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  box-shadow: var(--shadow-light);
 }
-.accordion-item {
-  margin-bottom: 1rem;
+
+.button:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-1px);
 }
-.accordion-checkbox {
-  display: none;
+
+.button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
 }
-.accordion-header {
-  display: block;
-  padding: 0.75rem 1rem;
-  background: var(--accordion-header-bg);
-  cursor: pointer;
-  border-radius: 4px;
+
+/* Form Inputs */
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: var(--surface);
+  font-family: var(--font-sans);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-.accordion-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease, padding 0.3s ease;
-  padding: 0 1rem;
-  background: var(--card-bg);
-  border-radius: 0 0 4px 4px;
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+  outline: none;
 }
-.accordion-checkbox:checked + .accordion-header + .accordion-content {
-  max-height: 200px;
-  padding: 0.75rem 1rem;
+
+/* Cards */
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: var(--shadow-light);
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+/* Link Underline Animation */
+a {
+  position: relative;
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+a:hover::after {
+  transform: scaleX(1);
+}
+
+/* Responsive Font Scaling */
+@media (min-width: 768px) {
+  html { font-size: 112.5%; }
+}
+
+@media (min-width: 1024px) {
+  html { font-size: 125%; }
 }
