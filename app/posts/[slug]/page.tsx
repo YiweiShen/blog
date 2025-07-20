@@ -55,7 +55,11 @@ export default async function PostPage(props: PageProps) {
       <header>
         <h1 className="text-4xl font-bold mb-2">{title}</h1>
         <time dateTime={date} className="text-gray-500">{formattedDate}</time>
-        {summary && <p className="mt-4 text-lg text-gray-700">{summary}</p>}
+        {summary && summary !== title && (
+          <p className="mt-4 text-lg text-gray-500 dark:text-gray-400">
+            {summary}
+          </p>
+        )}
       </header>
       <section className="mt-8">
         <CodeBlock html={content} />
