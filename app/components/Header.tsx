@@ -25,8 +25,10 @@ export default function Header() {
       <div className='container mx-auto px-8 py-4 flex items-center justify-between relative'>
         <div className='flex items-center space-x-6'>
           <h1 className='text-xl font-bold'>
-            <Link href='/' className='text-text-primary hover:text-accent'>
-              blog
+            <Link href='/' legacyBehavior>
+              <a className='text-text-primary hover:text-accent'>
+                blog
+              </a>
             </Link>
           </h1>
           <div className='hidden sm:block'>
@@ -94,29 +96,31 @@ export default function Header() {
         >
           <ul className='flex flex-col space-y-2 p-4 sm:flex-row sm:space-y-0 sm:space-x-6 sm:p-0'>
             <li>
-              <Link href='/' className='text-text-primary hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'>
-                Home
+              <Link href='/' legacyBehavior>
+                <a className='text-text-primary hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'>
+                  Home
+                </a>
               </Link>
             </li>
             <li>
-              <Link href='/about' className='text-text-primary hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'>
-                About
+              <Link href='/about' legacyBehavior>
+                <a className='text-text-primary hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'>
+                  About
+                </a>
               </Link>
             </li>
             <li>
-              <Link
-                href='/contact'
-                className='text-text-primary hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'
-              >
-                Contact
+              <Link href='/contact' legacyBehavior>
+                <a className='text-text-primary hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'>
+                  Contact
+                </a>
               </Link>
             </li>
             <li>
-              <Link
-                href='/slidev'
-                className='text-text-primary hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'
-              >
-                Slides
+              <Link href='/slidev' legacyBehavior>
+                <a className='text-text-primary hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'>
+                  Slides
+                </a>
               </Link>
             </li>
           </ul>
