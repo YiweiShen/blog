@@ -21,7 +21,7 @@ export default function Header() {
   }, [theme]);
 
   return (
-    <header className="sticky top-0 bg-surface dark:bg-surface z-50 border-b border-gray-200 dark:border-gray-700">
+    <div role="banner" className="sticky top-0 bg-surface dark:bg-surface z-50 border-b border-gray-200 dark:border-gray-700">
       <div className="container mx-auto px-8 py-4 flex items-center justify-between">
         <div className="flex items-center space-x-8">
           <Link href="/" legacyBehavior>
@@ -140,6 +140,6 @@ export default function Header() {
           </nav>
         </div>
       )}
-    </header>
+    </div>
   );
 }
