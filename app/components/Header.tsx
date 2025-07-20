@@ -8,7 +8,7 @@ export default function Header() {
 
   return (
     <header className='sticky top-0 bg-white shadow z-50'>
-      <div className='container mx-auto px-4 py-4 flex items-center justify-between relative'>
+      <div className='container mx-auto px-8 py-4 flex items-center justify-between relative'>
         <div className='flex items-center space-x-6'>
           <h1 className='text-xl font-bold'>
             <Link href='/' className='text-gray-900 hover:text-blue-500'>

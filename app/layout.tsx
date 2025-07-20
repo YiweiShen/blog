@@ -34,18 +34,18 @@ export default function RootLayout({
         <div className="flex flex-col min-h-screen">
           <Header />
           <main className="flex-grow">
-            <div className="container mx-auto px-8 py-8">
+            <div className="container mx-auto py-8">
               {children}
             </div>
           </main>
-          <footer className="bg-gray-100">
-            <div className="container mx-auto px-4 py-4 text-center text-sm text-gray-600">
+          <footer className="bg-surface">
+            <div className="container mx-auto py-4 text-center text-sm text-gray-600">
               &copy; {new Date().getFullYear()} blog. All rights reserved.
+              <div className="mt-2 text-xs text-gray-500">
+                Built at {process.env.NEXT_PUBLIC_BUILD_TIME} | v{process.env.NEXT_PUBLIC_VERSION}
+              </div>
             </div>
           </footer>
-          <div className="text-center text-xs text-gray-500 py-2">
-            Built at {process.env.NEXT_PUBLIC_BUILD_TIME} | v{process.env.NEXT_PUBLIC_VERSION}
-          </div>
         </div>
       </body>
     </html>
