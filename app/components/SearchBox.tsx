@@ -71,7 +71,8 @@ export default function SearchBox() {
     <div className="relative">
       <input
         type="text"
-        className="border rounded px-2 py-1 w-full sm:w-48 focus:outline-none focus:ring"
+        aria-label="Search blog posts"
+        className="border rounded px-2 py-1 w-full sm:w-48 focus:outline-none focus:ring placeholder-gray-500 placeholder-opacity-60"
         placeholder="Search..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
