@@ -3,17 +3,19 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import SearchBox from './SearchBox'
 
+type Theme = 'light' | 'dark'
+
+function getInitialTheme(): Theme {
+  if (typeof window !== 'undefined') {
+    return (localStorage.theme as Theme) ||
+      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+  }
+  return 'light'
+}
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-    if (typeof window !== 'undefined') {
-      return (
-        localStorage.theme ||
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-      )
-    }
-    return 'light'
-  });
+  const [theme, setTheme] = useState<Theme>(getInitialTheme)
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark')
