@@ -73,7 +73,9 @@ export function getPostBySlug(slug: string): Post {
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const { data: frontMatter, content } = matter(fileContents)
   const processed = remark().use(html).processSync(content)
-  const contentHtml = processed.toString()
+  let contentHtml = processed.toString()
+  // Remove the first H1 heading from markdown content to avoid duplicate titles
+  contentHtml = contentHtml.replace(/^<h1[^>]*>[\s\S]*?<\/h1>\s*/i, '')
   return {
     content: contentHtml,
     ...(frontMatter as PostMeta),
