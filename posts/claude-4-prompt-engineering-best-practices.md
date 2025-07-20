@@ -1,6 +1,6 @@
 ---
 title: "Claude 4 Prompt Engineering Best Practices"
-date: "2025-07-09"
+date: "2025-07-20"
 summary: "Explore proven techniques to craft clear, context-rich prompts and optimize tool usage for Claude 4 models, maximizing response quality and efficiency."
 ---
 
