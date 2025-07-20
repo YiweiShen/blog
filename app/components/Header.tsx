@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import SearchBox from './SearchBox'
@@ -13,12 +13,12 @@ export default function Header() {
       )
     }
     return 'light'
-  })
+  });
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark')
     localStorage.theme = theme
-  }, [theme])
+  }, [theme]);
 
   return (
     <header className="sticky top-0 bg-surface dark:bg-surface z-50 border-b border-gray-200 dark:border-gray-700">
