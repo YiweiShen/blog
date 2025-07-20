@@ -1,77 +1,8 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 
-/* Markdown content styling */
-.markdown {
-  line-height: 1.75;
-  font-size: 1.0625rem;
-  color: var(--foreground);
-  max-width: 65ch;
-  margin-left: auto;
-  margin-right: auto;
-}
-.markdown p {
-  margin: 1em 0;
-}
-.markdown h2 {
-  margin: 1.5em 0 0.5em;
-  font-size: 1.75em;
-  font-weight: bold;
-}
-.markdown h3 {
-  margin: 1.25em 0 0.5em;
-  font-size: 1.5em;
-  font-weight: bold;
-}
-.markdown h4 {
-  margin: 1em 0 0.5em;
-  font-size: 1.25em;
-  font-weight: bold;
-}
-.markdown ul,
-.markdown ol {
-  margin: 1em 0 1em 1.5em;
-}
-.markdown li {
-  margin: 0.5em 0;
-}
-.markdown blockquote {
-  border-left: 4px solid #D1D5DB;
-  padding-left: 1em;
-  margin: 1.5em 0;
-  color: #6B7280;
-  background: #F9FAFB;
-}
-.markdown img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin: 1.5em 0;
-  border-radius: 4px;
-}
-.markdown table {
-  width: 100%;
-  margin: 1.5em 0;
-  border-collapse: collapse;
-}
-.markdown th,
-.markdown td {
-  border: 1px solid #D1D5DB;
-  padding: 0.5em 1em;
-}
-.markdown code {
-  background: #F3F4F6;
-  padding: 0.2em 0.4em;
-  border-radius: 4px;
-  font-size: 0.95em;
-}
-.markdown a {
-  color: #1D4ED8;
-  text-decoration: underline;
-}
-.markdown a:hover {
-  color: #1E40AF;
-}
 
 
 
@@ -90,6 +21,18 @@
   --accent-hover: #357ABD;
   --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.05);
   --card-bg: #FFFFFF;
+}
+
+html.dark {
+  --bg: #1A202C;
+  --surface: #2D3748;
+  --text-primary: #E2E8F0;
+  --text-secondary: #A0AEC0;
+  --foreground: var(--text-primary);
+  --accent: #4A90E2;
+  --accent-hover: #357ABD;
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --card-bg: #2D3748;
 }
 
 /* Global Resets */
@@ -119,61 +62,12 @@ h1, h2, h3, h4 {
   margin-bottom: 1rem;
 }
 
-/* Responsive heading scales */
-h1 { font-size: 2.5rem; }
-@media (min-width: 768px) {
-  h1 { font-size: 3rem; }
-}
-h2 { font-size: 2rem; }
-@media (min-width: 768px) {
-  h2 { font-size: 2.5rem; }
-}
-h3 { font-size: 1.75rem; }
-@media (min-width: 768px) {
-  h3 { font-size: 2rem; }
-}
-h4 { font-size: 1.25rem; }
-@media (min-width: 768px) {
-  h4 { font-size: 1.5rem; }
-}
 /* Footer styling for build time display */
 footer {
   text-align: center;
   font-size: 0.875rem;
   color: var(--foreground);
   padding: 1rem 0;
-}
-/* Code block styling */
-.markdown pre {
-  background: var(--card-bg);
-  padding: 1rem;
-  border-radius: 0.5rem;
-  overflow-x: auto;
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-  position: relative;
-  margin: 1.5rem 0;
-}
-
-.markdown code {
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-}
-
-.markdown code .line {
-  display: block;
-  padding-left: 3em;
-  position: relative;
-}
-
-.markdown code .line::before {
-  content: attr(data-line-number);
-  position: absolute;
-  left: 0;
-  width: 2em;
-  text-align: right;
-  margin-right: 1em;
-  color: #6b7280;
 }
 
 .copy-button {

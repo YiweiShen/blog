@@ -54,5 +54,7 @@ export default function CodeBlock({ html }: CodeBlockProps) {
     });
   }, [html]);
 
-  return <div className="markdown" dangerouslySetInnerHTML={{ __html: html }} />;
+  return (
+    <div className="prose lg:prose-lg dark:prose-invert" dangerouslySetInnerHTML={{ __html: html }} />
+  );
 }
