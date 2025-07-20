@@ -49,7 +49,7 @@ export default async function PostPage(props: PageProps) {
             <Link href="/" className="text-blue-600 hover:underline">Blog</Link>
             <span className="mx-2 text-gray-500">›</span>
           </li>
-          <li className="inline-flex items-center text-gray-500">{title}</li>
+          <li className="inline-flex items-center text-gray-500" aria-current="page">{title}</li>
         </ol>
       </nav>
       <header>

@@ -6,6 +6,9 @@
   line-height: 1.75;
   font-size: 1.0625rem;
   color: var(--foreground);
+  max-width: 65ch;
+  margin-left: auto;
+  margin-right: auto;
 }
 .markdown p {
   margin: 1em 0;
@@ -116,10 +119,23 @@ h1, h2, h3, h4 {
   margin-bottom: 1rem;
 }
 
-h1 { font-size: 3rem; }
-h2 { font-size: 2.5rem; }
-h3 { font-size: 2rem; }
-h4 { font-size: 1.5rem; }
+/* Responsive heading scales */
+h1 { font-size: 2.5rem; }
+@media (min-width: 768px) {
+  h1 { font-size: 3rem; }
+}
+h2 { font-size: 2rem; }
+@media (min-width: 768px) {
+  h2 { font-size: 2.5rem; }
+}
+h3 { font-size: 1.75rem; }
+@media (min-width: 768px) {
+  h3 { font-size: 2rem; }
+}
+h4 { font-size: 1.25rem; }
+@media (min-width: 768px) {
+  h4 { font-size: 1.5rem; }
+}
 /* Footer styling for build time display */
 footer {
   text-align: center;
@@ -259,6 +275,13 @@ a:hover {
 
 a:hover::after {
   transform: scaleX(1);
+}
+
+/* Focus styles for interactive elements */
+a:focus,
+button:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 /* Responsive Font Scaling */
