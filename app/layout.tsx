@@ -30,18 +30,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${playfair.variable} antialiased`}>
-        <div className="flex flex-col min-h-screen">
+    <body className={`${inter.variable} ${playfair.variable} antialiased`}>
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:bg-surface focus:text-foreground p-4">
+        Skip to main content
+      </a>
+      <div className="flex flex-col min-h-screen">
           <Header />
-          <main className="flex-grow">
+          <main id="main-content" className="flex-grow">
             <div className="container mx-auto py-8">
               {children}
             </div>
           </main>
           <footer className="bg-surface">
-            <div className="container mx-auto py-4 text-center text-sm text-gray-600">
+            <div className="container mx-auto py-4 text-center text-sm text-text-secondary">
               &copy; {new Date().getFullYear()} blog. All rights reserved.
-              <div className="mt-2 text-xs text-gray-500">
+              <div className="mt-2 text-xs text-text-secondary">
                 Built at {process.env.NEXT_PUBLIC_BUILD_TIME} | v{process.env.NEXT_PUBLIC_VERSION}
               </div>
             </div>

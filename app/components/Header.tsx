@@ -21,11 +21,11 @@ export default function Header() {
   }, [theme])
 
   return (
-    <header className='sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 z-50'>
+    <header className='sticky top-0 bg-surface dark:bg-surface z-50'>
       <div className='container mx-auto px-8 py-4 flex items-center justify-between relative'>
         <div className='flex items-center space-x-6'>
           <h1 className='text-xl font-bold'>
-            <Link href='/' className='text-gray-900 hover:text-blue-500'>
+            <Link href='/' className='text-text-primary hover:text-accent'>
               blog
             </Link>
           </h1>
@@ -36,7 +36,7 @@ export default function Header() {
         <button
           aria-label='Toggle menu'
           onClick={() => setMenuOpen(!menuOpen)}
-          className='sm:hidden text-gray-900 hover:text-blue-500 focus:outline-none'
+          className='sm:hidden text-text-primary hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'
         >
           {menuOpen ? (
             <svg
@@ -71,7 +71,7 @@ export default function Header() {
         <button
           aria-label='Toggle dark mode'
           onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          className='ml-4 text-gray-900 dark:text-gray-100 hover:text-blue-500 focus:outline-none'
+          className='ml-4 text-text-primary hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'
         >
           {theme === 'dark' ? (
             <svg xmlns='http://www.w3.org/2000/svg' className='w-6 h-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
@@ -83,25 +83,30 @@ export default function Header() {
             </svg>
           )}
         </button>
-        {menuOpen && <div className='fixed inset-0 bg-black bg-opacity-25 z-40 sm:hidden' onClick={() => setMenuOpen(false)} />}
+{menuOpen && (
+          <div
+            className='fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm z-40 sm:hidden'
+            onClick={() => setMenuOpen(false)}
+          />
+        )}
         <nav
-          className={`${menuOpen ? 'translate-x-0' : '-translate-x-full'} absolute top-full left-0 w-full bg-white dark:bg-gray-800 sm:relative sm:top-auto sm:left-auto sm:w-auto sm:translate-x-0 transform transition-transform duration-200 ease-in-out z-50`}
+          className={`${menuOpen ? 'translate-x-0' : '-translate-x-full'} absolute top-full left-0 w-full bg-surface dark:bg-surface sm:relative sm:top-auto sm:left-auto sm:w-auto sm:translate-x-0 transform transition-transform duration-300 ease-out z-50`}
         >
           <ul className='flex flex-col space-y-2 p-4 sm:flex-row sm:space-y-0 sm:space-x-6 sm:p-0'>
             <li>
-              <Link href='/' className='text-gray-700 hover:text-blue-500'>
+              <Link href='/' className='text-text-primary hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'>
                 Home
               </Link>
             </li>
             <li>
-              <Link href='/about' className='text-gray-700 hover:text-blue-500'>
+              <Link href='/about' className='text-text-primary hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'>
                 About
               </Link>
             </li>
             <li>
               <Link
                 href='/contact'
-                className='text-gray-700 hover:text-blue-500'
+                className='text-text-primary hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'
               >
                 Contact
               </Link>
@@ -109,7 +114,7 @@ export default function Header() {
             <li>
               <Link
                 href='/slidev'
-                className='text-gray-700 hover:text-blue-500'
+                className='text-text-primary hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'
               >
                 Slides
               </Link>

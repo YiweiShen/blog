@@ -38,25 +38,25 @@ export default async function PostPage(props: PageProps) {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
   return (
-    <article className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow">
+  <article className="bg-surface p-10 rounded-lg shadow-light">
       <nav aria-label="Breadcrumb" className="text-sm mb-4">
         <ol className="list-none p-0 inline-flex">
           <li className="inline-flex items-center">
-            <Link href="/" className="text-blue-600 hover:underline">Home</Link>
-            <span className="mx-2 text-gray-500">›</span>
+            <Link href="/" className="text-accent hover:text-accent-hover">Home</Link>
+            <span className="mx-2 text-text-secondary">›</span>
           </li>
           <li className="inline-flex items-center">
-            <Link href="/" className="text-blue-600 hover:underline">Blog</Link>
-            <span className="mx-2 text-gray-500">›</span>
+            <Link href="/" className="text-accent hover:text-accent-hover">Blog</Link>
+            <span className="mx-2 text-text-secondary">›</span>
           </li>
-          <li className="inline-flex items-center text-gray-500" aria-current="page">{title}</li>
+          <li className="inline-flex items-center text-text-secondary" aria-current="page">{title}</li>
         </ol>
       </nav>
-      <header>
-        <h1 className="text-4xl font-bold mb-2">{title}</h1>
-        <time dateTime={date} className="text-gray-500">{formattedDate}</time>
+    <header>
+        <h1 className="text-3xl sm:text-4xl font-bold mb-4">{title}</h1>
+        <time dateTime={date} className="text-text-secondary">{formattedDate}</time>
         {summary && summary !== title && (
-          <p className="mt-4 text-lg text-gray-500 dark:text-gray-400">
+          <p className="mt-4 text-lg text-text-secondary">
             {summary}
           </p>
         )}
@@ -67,12 +67,12 @@ export default async function PostPage(props: PageProps) {
 
       <nav className="mt-8 flex justify-between">
         {older && (
-          <Link href={`/posts/${older.slug}`} className="text-blue-600 hover:underline">
+          <Link href={`/posts/${older.slug}`} className="text-accent hover:text-accent-hover">
             &larr; {older.title}
           </Link>
         )}
         {newer && (
-          <Link href={`/posts/${newer.slug}`} className="text-blue-600 hover:underline">
+          <Link href={`/posts/${newer.slug}`} className="text-accent hover:text-accent-hover">
             {newer.title} &rarr;
           </Link>
         )}
@@ -80,14 +80,14 @@ export default async function PostPage(props: PageProps) {
 
       {relatedPosts.length > 0 && (
         <section className="mt-12">
-          <details className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
+          <details className="bg-surface border border-secondary rounded-lg">
             <summary className="p-4 text-2xl font-semibold cursor-pointer">Related Posts</summary>
             <div className="p-4 pt-0 grid grid-cols-1 sm:grid-cols-2 gap-4">
               {relatedPosts.map((post) => (
                 <Link
                   key={post.slug}
                   href={`/posts/${escapeHtml(post.slug)}`}
-                  className="flex items-center space-x-4 p-4 border rounded hover:shadow"
+                  className="flex items-center space-x-4 p-4 border border-secondary rounded-lg hover:shadow-light"
                 >
                   <img
                     src={`${basePath}/file.svg`}
@@ -95,8 +95,8 @@ export default async function PostPage(props: PageProps) {
                     className="w-16 h-16 object-cover rounded"
                   />
                   <div>
-                    <h3 className="text-lg font-medium text-blue-600 hover:underline">{post.title}</h3>
-                    <p className="text-gray-500">{post.date}</p>
+                  <h3 className="text-lg font-medium text-accent hover:text-accent-hover">{post.title}</h3>
+                    <p className="text-text-secondary">{post.date}</p>
                   </div>
                 </Link>
               ))}

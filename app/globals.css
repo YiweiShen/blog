@@ -58,7 +58,7 @@ section {
 
 h1, h2, h3, h4 {
   font-family: var(--font-serif);
-  color: #111111;
+  color: var(--text-primary);
   margin-bottom: 1rem;
 }
 

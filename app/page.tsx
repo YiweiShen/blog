@@ -11,16 +11,16 @@ export default function Home() {
   return (
     <>
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-4xl font-bold">Article List</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold">Article List</h2>
         <div className="flex items-center space-x-6">
-          <Link href="/rss.xml" className="text-blue-600 hover:underline">
+          <Link href="/rss.xml" className="text-accent hover:text-accent-hover">
             Subscribe via RSS
           </Link>
           <a
             href="https://github.com/YiweiShen/blog"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-900 hover:text-blue-600"
+            className="text-text-primary hover:text-accent"
           >
             View Source on GitHub
           </a>
@@ -30,15 +30,15 @@ export default function Home() {
         {posts.map((post: PostMeta) => (
           <div
             key={post.slug}
-            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition"
+            className="bg-surface p-6 rounded-lg shadow-light hover:shadow-md transition-shadow duration-200"
           >
             <Link
               href={`/posts/${post.slug}`}
-              className="text-2xl font-semibold text-blue-600 hover:underline"
+              className="text-2xl font-semibold text-accent hover:text-accent-hover"
             >
               {post.title}
             </Link>
-            <p className="mt-2 text-gray-500">{post.date}</p>
+            <p className="mt-2 text-text-secondary">{post.date}</p>
           </div>
         ))}
       </div>
