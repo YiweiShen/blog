@@ -2,37 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-
-
-
 /* Design Tokens */
 :root {
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
-  --bg: #FFFFFF;
-  --surface: #F8F8F8;
+  --bg: #ffffff;
+  --surface: #f8f8f8;
   --text-primary: #222222;
   --text-secondary: #555555;
   --foreground: var(--text-primary);
-  --accent: #4A90E2;
-  --accent-hover: #357ABD;
+  --accent: #4a90e2;
+  --accent-hover: #357abd;
   --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.05);
-  --card-bg: #FFFFFF;
+  --card-bg: #ffffff;
 }
 
 html.dark {
-  --bg: #1A202C;
-  --surface: #2D3748;
-  --text-primary: #E2E8F0;
-  --text-secondary: #A0AEC0;
+  --bg: #1a202c;
+  --surface: #2d3748;
+  --text-primary: #e2e8f0;
+  --text-secondary: #a0aec0;
   --foreground: var(--text-primary);
-  --accent: #4A90E2;
-  --accent-hover: #357ABD;
+  --accent: #4a90e2;
+  --accent-hover: #357abd;
   --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --card-bg: #2D3748;
+  --card-bg: #2d3748;
 }
 
 /* Global Resets */
@@ -40,7 +35,9 @@ html {
   box-sizing: border-box;
   font-size: 100%;
 }
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
@@ -56,7 +53,10 @@ section {
   padding: 4rem 0;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: var(--font-serif);
   color: var(--text-primary);
   margin-bottom: 1rem;
@@ -92,7 +92,9 @@ footer {
   background-color: var(--accent);
   color: #fff;
   text-decoration: none;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
   box-shadow: var(--shadow-light);
 }
 
@@ -103,12 +105,12 @@ footer {
 
 .button:active {
   transform: translateY(0);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Form Inputs */
-input[type="text"],
-input[type="email"],
+input[type='text'],
+input[type='email'],
 textarea,
 select {
   width: 100%;
@@ -117,7 +119,9 @@ select {
   border-radius: 6px;
   background-color: var(--surface);
   font-family: var(--font-sans);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 input:focus,
@@ -130,16 +134,18 @@ select:focus {
 
 /* Cards */
 .card {
-  background-color: #fff;
+  background-color: var(--card-bg);
   border-radius: 8px;
   box-shadow: var(--shadow-light);
   padding: 1.5rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 /* Link Underline Animation */
@@ -151,7 +157,7 @@ a {
 }
 
 a::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   bottom: -2px;
@@ -180,9 +186,13 @@ button:focus {
 
 /* Responsive Font Scaling */
 @media (min-width: 768px) {
-  html { font-size: 112.5%; }
+  html {
+    font-size: 112.5%;
+  }
 }
 
 @media (min-width: 1024px) {
-  html { font-size: 125%; }
+  html {
+    font-size: 125%;
+  }
 }
