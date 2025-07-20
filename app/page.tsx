@@ -10,6 +10,30 @@ export default function Home() {
   const posts = getAllPosts();
   return (
     <>
+      <nav className="mb-6">
+        <ul className="flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-6">
+          <li>
+            <Link href="/" className="text-text-primary hover:text-accent">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link href="/about" className="text-text-primary hover:text-accent">
+              About
+            </Link>
+          </li>
+          <li>
+            <Link href="/contact" className="text-text-primary hover:text-accent">
+              Contact
+            </Link>
+          </li>
+          <li>
+            <Link href="/slidev" className="text-text-primary hover:text-accent">
+              Slides
+            </Link>
+          </li>
+        </ul>
+      </nav>
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold">Article List</h2>
         <div className="flex items-center space-x-6">
