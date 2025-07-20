@@ -1,9 +1,10 @@
-'use client';
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import SearchBox from './SearchBox'
+"use client";
 
-type Theme = 'light' | 'dark'
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import SearchBox from "./SearchBox";
+
+type Theme = "light" | "dark";
 
 function getInitialTheme(): Theme {
   if (typeof window !== 'undefined') {
@@ -14,8 +15,8 @@ function getInitialTheme(): Theme {
 }
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [theme, setTheme] = useState<Theme>(getInitialTheme)
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark')
