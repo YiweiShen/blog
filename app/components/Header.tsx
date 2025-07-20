@@ -31,9 +31,7 @@ export default function Header() {
               </a>
             </Link>
           </h1>
-          <div className='hidden sm:block'>
-            <SearchBox />
-          </div>
+          <SearchBox />
         </div>
         <button
           aria-label='Toggle menu'
