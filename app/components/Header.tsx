@@ -21,109 +21,125 @@ export default function Header() {
   }, [theme])
 
   return (
-    <header className='sticky top-0 bg-surface dark:bg-surface z-50'>
-      <div className='container mx-auto px-8 py-4 flex items-center justify-between relative'>
-        <div className='flex items-center space-x-6'>
-          <h1 className='text-xl font-bold'>
-            <Link href='/' legacyBehavior>
-              <a className='text-text-primary hover:text-accent'>
-                blog
-              </a>
+    <header className="sticky top-0 bg-surface dark:bg-surface z-50 border-b border-gray-200 dark:border-gray-700">
+      <div className="container mx-auto px-8 py-4 flex items-center justify-between">
+        <div className="flex items-center space-x-8">
+          <Link href="/" legacyBehavior>
+            <a className="text-2xl font-bold text-text-primary hover:text-accent">
+              blog
+            </a>
+          </Link>
+
+          <nav className="hidden sm:flex space-x-6">
+            <Link href="/" legacyBehavior>
+              <a className="text-text-primary hover:text-accent">Home</a>
             </Link>
-          </h1>
-          <SearchBox />
+            <Link href="/about" legacyBehavior>
+              <a className="text-text-primary hover:text-accent">About</a>
+            </Link>
+            <Link href="/contact" legacyBehavior>
+              <a className="text-text-primary hover:text-accent">Contact</a>
+            </Link>
+            <Link href="/slidev" legacyBehavior>
+              <a className="text-text-primary hover:text-accent">Slides</a>
+            </Link>
+          </nav>
         </div>
-        <button
-          aria-label='Toggle menu'
-          onClick={() => setMenuOpen(!menuOpen)}
-          className='sm:hidden text-text-primary hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'
-        >
-          {menuOpen ? (
-            <svg
-              className='w-6 h-6'
-              fill='none'
-              stroke='currentColor'
-              viewBox='0 0 24 24'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth={2}
-                d='M6 18L18 6M6 6l12 12'
-              />
-            </svg>
-          ) : (
-            <svg
-              className='w-6 h-6'
-              fill='none'
-              stroke='currentColor'
-              viewBox='0 0 24 24'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth={2}
-                d='M4 6h16M4 12h16M4 18h16'
-              />
-            </svg>
-          )}
-        </button>
-        <button
-          aria-label='Toggle dark mode'
-          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          className='ml-4 text-text-primary hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'
-        >
-          {theme === 'dark' ? (
-            <svg xmlns='http://www.w3.org/2000/svg' className='w-6 h-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-              <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M12 3v1m0 16v1m8.66-12.34l-.707.707M4.047 19.95l-.707.707M21 12h-1M4 12H3m16.243 4.243l-.707-.707M6.464 6.464l-.707-.707' />
-            </svg>
-          ) : (
-            <svg xmlns='http://www.w3.org/2000/svg' className='w-6 h-6' fill='currentColor' viewBox='0 0 24 24' stroke='currentColor'>
-              <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M12 3C10.343 3 8.742 3.343 7.414 4.162a9 9 0 1011.424 11.424C20.657 15.258 21 13.657 21 12h-9z' />
-            </svg>
-          )}
-        </button>
-{menuOpen && (
-          <div
-            className='fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm z-40 sm:hidden'
-            onClick={() => setMenuOpen(false)}
-          />
-        )}
-        <nav
-          className={`${menuOpen ? 'translate-x-0' : '-translate-x-full'} absolute top-full left-0 w-full bg-surface dark:bg-surface sm:relative sm:top-auto sm:left-auto sm:w-auto sm:translate-x-0 transform transition-transform duration-300 ease-out z-50`}
-        >
-          <ul className='flex flex-col space-y-2 p-4 sm:flex-row sm:space-y-0 sm:space-x-6 sm:p-0'>
-            <li>
-              <Link href='/' legacyBehavior>
-                <a className='text-text-primary hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'>
-                  Home
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href='/about' legacyBehavior>
-                <a className='text-text-primary hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'>
-                  About
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href='/contact' legacyBehavior>
-                <a className='text-text-primary hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'>
-                  Contact
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href='/slidev' legacyBehavior>
-                <a className='text-text-primary hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'>
-                  Slides
-                </a>
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
+
+        <div className="flex items-center space-x-4">
+          <SearchBox />
+          <button
+            aria-label="Toggle dark mode"
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="text-text-primary hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
+          >
+            {theme === "dark" ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 3v1m0 16v1m8.66-12.34l-.707.707M4.047 19.95l-.707.707M21 12h-1M4 12H3m16.243 4.243l-.707-.707M6.464 6.464l-.707-.707"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-6 h-6"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 3C10.343 3 8.742 3.343 7.414 4.162a9 9 0 1011.424 11.424C20.657 15.258 21 13.657 21 12h-9z"
+                />
+              </svg>
+            )}
+          </button>
+          <button
+            aria-label="Toggle menu"
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="sm:hidden text-text-primary hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
+          >
+            {menuOpen ? (
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            ) : (
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            )}
+          </button>
+        </div>
+
+      {menuOpen && (
+        <div className="sm:hidden bg-surface dark:bg-surface border-b border-gray-200 dark:border-gray-700">
+          <nav className="px-8 pb-4 space-y-2">
+            <Link href="/" legacyBehavior>
+              <a className="block text-text-primary hover:text-accent">Home</a>
+            </Link>
+            <Link href="/about" legacyBehavior>
+              <a className="block text-text-primary hover:text-accent">About</a>
+            </Link>
+            <Link href="/contact" legacyBehavior>
+              <a className="block text-text-primary hover:text-accent">Contact</a>
+            </Link>
+            <Link href="/slidev" legacyBehavior>
+              <a className="block text-text-primary hover:text-accent">Slides</a>
+            </Link>
+          </nav>
+        </div>
+      )}
     </header>
-  )
+  );
 }
