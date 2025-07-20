@@ -22,11 +22,12 @@ module.exports = {
         serif: ['var(--font-serif)'],
       },
       colors: {
-        surface: '#F8F8F8',
-        'text-primary': '#222222',
-        'text-secondary': '#555555',
-        accent: '#4A90E2',
-        'accent-hover': '#357ABD',
+        surface: 'var(--surface)',
+        foreground: 'var(--foreground)',
+        'text-primary': 'var(--text-primary)',
+        'text-secondary': 'var(--text-secondary)',
+        accent: 'var(--accent)',
+        'accent-hover': 'var(--accent-hover)',
       },
       boxShadow: {
         light: '0 2px 8px rgba(0,0,0,0.05)',

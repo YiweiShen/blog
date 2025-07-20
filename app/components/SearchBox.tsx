@@ -72,7 +72,7 @@ export default function SearchBox() {
       <input
         type="text"
         aria-label="Search blog posts"
-        className="border rounded px-2 py-1 w-full sm:w-48 focus:outline-none focus:ring placeholder-gray-500 placeholder-opacity-60"
+        className="w-full sm:w-48 rounded px-4 py-2 bg-surface border border-secondary focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent placeholder-text-secondary"
         placeholder="Search..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
@@ -80,9 +80,9 @@ export default function SearchBox() {
         onFocus={() => query && results.length > 0 && setShowResults(true)}
       />
       {showResults && results.length > 0 && (
-        <ul className="absolute top-full left-0 w-full bg-white border mt-1 max-h-60 overflow-auto z-50">
+        <ul role="listbox" className="absolute top-full left-0 w-full bg-surface border border-secondary shadow-light mt-1 max-h-60 overflow-auto z-50">
           {results.map((post) => (
-            <li key={post.slug} className="px-2 py-1 hover:bg-gray-100">
+            <li key={post.slug} role="option" className="px-4 py-2 hover:bg-surface">
               <Link href={`/posts/${post.slug}`} className="block">
                 {post.title}
               </Link>
