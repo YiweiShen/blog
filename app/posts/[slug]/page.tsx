@@ -2,6 +2,7 @@ import escapeHtml from 'escape-html';
 import { getPostBySlug, getAllPosts } from '../../../lib/posts';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import CodeBlock from '../../components/CodeBlock';
 
 interface PageProps {
@@ -89,10 +90,12 @@ export default async function PostPage(props: PageProps) {
                   href={`/posts/${escapeHtml(post.slug)}`}
                   className="flex items-center space-x-4 p-4 border rounded hover:shadow"
                 >
-                  <img
+                  <Image
                     src={`${basePath}/file.svg`}
                     alt={post.title}
-                    className="w-16 h-16 object-cover rounded"
+                    width={64}
+                    height={64}
+                    className="object-cover rounded"
                   />
                   <div>
                     <h3 className="text-lg font-medium text-blue-600 hover:underline">{post.title}</h3>
