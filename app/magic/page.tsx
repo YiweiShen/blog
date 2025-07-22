@@ -2,11 +2,6 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 
-export const metadata = {
-  title: 'Mysto the Marvel | Magic',
-  description: 'Prepare to Believe in Magic with Mysto the Marvel',
-}
-
 export default function MagicPage() {
   const specialties = ['Sleight of Hand', 'Stage Illusions', 'Mentalism', 'Card Tricks']
   const [typedText, setTypedText] = useState('')
