@@ -1,9 +1,10 @@
 "use client";
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function MagicPage() {
-  const specialties = ['Sleight of Hand', 'Stage Illusions', 'Mentalism', 'Card Tricks']
+  const specialties = useMemo(() => ['Sleight of Hand', 'Stage Illusions', 'Mentalism', 'Card Tricks'], [])
   const [typedText, setTypedText] = useState('')
   const [specIndex, setSpecIndex] = useState(0)
   const [charIndex, setCharIndex] = useState(0)
@@ -29,10 +30,11 @@ export default function MagicPage() {
       
       <section className="relative h-screen flex items-center justify-center text-center">
         <div className="absolute inset-0">
-          <img
+          <Image
             src="https://via.placeholder.com/1950x1080?text=Mystical+Magic"
             alt="Mystical Background"
             className="w-full h-full object-cover opacity-70"
+            fill
           />
           <div className="absolute inset-0 bg-black opacity-50" />
         </div>
@@ -91,9 +93,11 @@ export default function MagicPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[...Array(6)].map((_, i) => (
               <div key={i} className="overflow-hidden rounded-lg">
-                <img
+                <Image
                   src={`https://via.placeholder.com/600x400?text=Photo+${i + 1}`}
                   alt={`Mysto Photo ${i + 1}`}
+                  width={600}
+                  height={400}
                   className="w-full h-full object-cover transform transition-transform duration-300 hover:scale-110"
                 />
               </div>
@@ -113,7 +117,7 @@ export default function MagicPage() {
               { quote: 'Mysto made our event unforgettable.', name: 'Sarah Lee', rating: 5 },
             ].map((item, idx) => (
               <div key={idx} className="card p-6">
-                <p className="italic mb-4">"{item.quote}"</p>
+                <p className="italic mb-4">&ldquo;{item.quote}&rdquo;</p>
                 <div className="mb-2">
                   {'★'.repeat(item.rating) + '☆'.repeat(5 - item.rating)}
                 </div>
