@@ -269,3 +269,18 @@ a:hover::after {
 @media (min-width: 1024px) {
   html { font-size: 125%; }
 }
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Cursor blink for typewriter effect */
+.blinking-cursor {
+  display: inline-block;
+  width: 1ch;
+  animation: blink 1s step-start infinite;
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}

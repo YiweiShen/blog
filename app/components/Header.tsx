@@ -86,6 +86,11 @@ export default function Header() {
                 Slides
               </Link>
             </li>
+            <li>
+              <Link href='/magic' className='text-gray-700 hover:text-blue-500'>
+                Magic
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
