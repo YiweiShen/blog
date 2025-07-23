@@ -31,7 +31,7 @@ export default function MagicPage() {
       <section className="relative h-screen flex items-center justify-center text-center">
         <div className="absolute inset-0">
           <Image
-            src="https://via.placeholder.com/1950x1080?text=Mystical+Magic"
+            src="/magic-bg.svg"
             alt="Mystical Background"
             className="w-full h-full object-cover opacity-70"
             fill
@@ -94,7 +94,7 @@ export default function MagicPage() {
             {[...Array(6)].map((_, i) => (
               <div key={i} className="overflow-hidden rounded-lg">
                 <Image
-                  src={`https://via.placeholder.com/600x400?text=Photo+${i + 1}`}
+                  src="/magic-photo.svg"
                   alt={`Mysto Photo ${i + 1}`}
                   width={600}
                   height={400}
