@@ -6,15 +6,8 @@ import Image from 'next/image'
 export default function MagicPage() {
   const specialties = useMemo(() => ['Sleight of Hand', 'Stage Illusions', 'Mentalism', 'Card Tricks'], [])
   const galleryImages = useMemo(
-    () => [
-      '/magic-photo-1.jpg',
-      '/magic-photo-2.jpg',
-      '/magic-photo-3.jpg',
-      '/magic-photo-4.jpg',
-      '/magic-photo-5.jpg',
-      '/magic-photo-6.jpg',
-    ],
-    []
+    () => Array(6).fill('/magic-photo.svg'),
+    [],
   )
   const [typedText, setTypedText] = useState('')
   const [specIndex, setSpecIndex] = useState(0)
