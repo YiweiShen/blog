@@ -1,7 +1,13 @@
 "use client";
 import React, { useState, useEffect, useMemo } from 'react'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+
+export const metadata: Metadata = {
+  title: 'Magic',
+  description: 'Prepare to Believe in Magic with Mysto the Marvel',
+}
 
 export default function MagicPage() {
   const specialties = useMemo(() => ['Sleight of Hand', 'Stage Illusions', 'Mentalism', 'Card Tricks'], [])
