@@ -221,6 +221,7 @@ select:focus {
 /* Cards */
 .card {
   background-color: #fff;
+  color: var(--text-primary);
   border-radius: 8px;
   box-shadow: var(--shadow-light);
   padding: 1.5rem;
