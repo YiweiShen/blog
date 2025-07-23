@@ -58,7 +58,7 @@ export default function MagicPage() {
           <div className="absolute inset-0 bg-black opacity-50" />
         </div>
         <div className="relative z-10 px-4">
-          <h1 className="text-5xl md:text-6xl font-serif mb-4 text-white">
+          <h1 className="text-5xl md:text-6xl font-serif mb-4 text-primary">
             Prepare to Believe in Magic
           </h1>
           <p className="text-xl md:text-2xl mb-6 text-white">
@@ -73,7 +73,7 @@ export default function MagicPage() {
       
       <section id="about" className="bg-gray-900 text-white text-center py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-serif mb-4 text-white">About Mysto the Marvel</h2>
+          <h2 className="text-3xl font-serif mb-4 text-primary">About Mysto the Marvel</h2>
           <p className="max-w-2xl mx-auto mb-6">
             Mysto the Marvel has dazzled audiences worldwide with his captivating performances and
             mind-bending illusions. With years of experience on stage and close-up venues, Mysto
@@ -108,7 +108,7 @@ export default function MagicPage() {
       
       <section id="gallery" className="bg-gray-900 text-white py-20">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-serif mb-8 text-white">Gallery</h2>
+          <h2 className="text-3xl font-serif mb-8 text-primary">Gallery</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {galleryImages.map((src, i) => (
               <div key={i} className="overflow-hidden rounded-lg">
