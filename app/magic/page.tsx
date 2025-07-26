@@ -6,7 +6,7 @@ import Image from 'next/image'
 export default function MagicPage() {
   const specialties = useMemo(() => ['Sleight of Hand', 'Stage Illusions', 'Mentalism', 'Card Tricks'], [])
   const galleryImages = useMemo(
-    () => Array(6).fill('/magic-photo.svg'),
+    () => Array(6).fill('/blog/magic-photo.svg'),
     [],
   )
   const [typedText, setTypedText] = useState('')
