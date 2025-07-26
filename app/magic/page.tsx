@@ -6,7 +6,7 @@ import Image from 'next/image'
 export default function MagicPage() {
   const specialties = useMemo(() => ['Sleight of Hand', 'Stage Illusions', 'Mentalism', 'Card Tricks'], [])
   const galleryImages = useMemo(
-    () => Array(6).fill('/blog/magic-photo.svg'),
+    () => Array(6).fill('/magic-photo.svg'),
     [],
   )
   const [typedText, setTypedText] = useState('')
@@ -57,7 +57,7 @@ export default function MagicPage() {
           />
           <div className="absolute inset-0 bg-black opacity-75" />
         </div>
-        <div className="relative z-10 px-4">
+        <div className="relative z-10 container mx-auto px-4">
           <h1 className="text-5xl md:text-6xl font-serif mb-4 text-white drop-shadow-lg">
             Prepare to Believe in Magic
           </h1>
@@ -87,7 +87,7 @@ export default function MagicPage() {
       </section>
 
       
-      <section id="services" className="py-20">
+      <section id="services" className="bg-gray-900 text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-serif mb-8">Show Offerings</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -126,7 +126,7 @@ export default function MagicPage() {
       </section>
 
       
-      <section id="testimonials" className="py-20">
+      <section id="testimonials" className="bg-gray-900 text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-serif mb-8">Testimonials</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -168,14 +168,14 @@ export default function MagicPage() {
               Send
             </button>
           </form>
-          <div className="mt-8 text-center text-white">
-            <a href="#" className="mx-2">
+          <div className="mt-8 text-center">
+            <a href="#" className="mx-2 text-accent hover:text-accent-hover">
               Twitter
             </a>
-            <a href="#" className="mx-2">
+            <a href="#" className="mx-2 text-accent hover:text-accent-hover">
               Instagram
             </a>
-            <p className="mt-4">🎩 ✨ Mysto the Marvel ✨ 🎩</p>
+            <p className="mt-4 text-white">🎩 ✨ Mysto the Marvel ✨ 🎩</p>
           </div>
         </div>
       </section>
