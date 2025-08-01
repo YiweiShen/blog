@@ -52,8 +52,9 @@ export default function MagicPage() {
           <Image
             src="/magic-bg.svg"
             alt="Mystical Background"
-            className="w-full h-full object-cover"
             fill
+            className="object-cover"
+            priority
           />
           <div className="absolute inset-0 bg-black opacity-75" />
         </div>
