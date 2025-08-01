@@ -45,14 +45,14 @@ export default function MagicPage() {
   }, [charIndex, specIndex, specialties])
 
   return (
-    <div className="text-white bg-black">
+    <div className="text-black">
       
       <section className="h-screen flex items-center justify-center text-center">
         <div className="container mx-auto px-4">
-          <h1 className="text-5xl md:text-6xl font-serif mb-4 text-white drop-shadow-lg">
+          <h1 className="text-5xl md:text-6xl font-serif mb-4 drop-shadow-lg">
             Prepare to Believe in Magic
           </h1>
-          <p className="text-xl md:text-2xl mb-6 text-white">
+          <p className="text-xl md:text-2xl mb-6">
             Join Mysto the Marvel in a journey beyond imagination.
           </p>
           <Link href="#contact" className="button">
@@ -62,9 +62,9 @@ export default function MagicPage() {
       </section>
 
       
-      <section id="about" className="bg-gray-900 text-white text-center py-20">
+      <section id="about" className="text-center py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-serif mb-4 text-white">About Mysto the Marvel</h2>
+          <h2 className="text-3xl font-serif mb-4">About Mysto the Marvel</h2>
           <p className="max-w-2xl mx-auto mb-6">
             Mysto the Marvel has dazzled audiences worldwide with his captivating performances and
             mind-bending illusions. With years of experience on stage and close-up venues, Mysto
@@ -78,7 +78,7 @@ export default function MagicPage() {
       </section>
 
       
-      <section id="services" className="bg-gray-900 text-white py-20">
+      <section id="services" className="py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-serif mb-8">Show Offerings</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -87,7 +87,7 @@ export default function MagicPage() {
               { title: 'Corporate Events', desc: 'Professional magic shows for your corporate functions.' },
               { title: 'Virtual Shows', desc: 'Interactive online magic experiences.' },
             ].map((item) => (
-              <div key={item.title} className="card p-6 bg-gray-800 text-white">
+              <div key={item.title} className="card p-6">
                 <h3 className="text-2xl font-serif mb-2">{item.title}</h3>
                 <p>{item.desc}</p>
               </div>
@@ -97,9 +97,9 @@ export default function MagicPage() {
       </section>
 
       
-      <section id="gallery" className="bg-gray-900 text-white py-20">
+      <section id="gallery" className="py-20">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-serif mb-8 text-white">Gallery</h2>
+          <h2 className="text-3xl font-serif mb-8">Gallery</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {galleryImages.map((src, i) => (
               <div key={i} className="overflow-hidden rounded-lg">
@@ -117,7 +117,7 @@ export default function MagicPage() {
       </section>
 
       
-      <section id="testimonials" className="bg-gray-900 text-white py-20">
+      <section id="testimonials" className="py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-serif mb-8">Testimonials</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -139,9 +139,9 @@ export default function MagicPage() {
       </section>
 
       
-      <section id="contact" className="bg-gray-900 py-20">
+      <section id="contact" className="py-20">
         <div className="container mx-auto px-4 max-w-lg">
-          <h2 className="text-3xl font-serif mb-6 text-center text-white">Contact</h2>
+          <h2 className="text-3xl font-serif mb-6 text-center">Contact</h2>
           <form className="space-y-4">
             {['Name', 'Email', 'Message'].map((field) =>
               field !== 'Message' ? (
@@ -166,7 +166,7 @@ export default function MagicPage() {
             <a href="#" className="mx-2 text-accent hover:text-accent-hover">
               Instagram
             </a>
-            <p className="mt-4 text-white">🎩 ✨ Mysto the Marvel ✨ 🎩</p>
+            <p className="mt-4">🎩 ✨ Mysto the Marvel ✨ 🎩</p>
           </div>
         </div>
       </section>
