@@ -47,18 +47,8 @@ export default function MagicPage() {
   return (
     <div className="text-white bg-black">
       
-      <section className="relative h-screen flex items-center justify-center text-center">
-        <div className="absolute inset-0">
-          <Image
-            src="/magic-bg.svg"
-            alt="Mystical Background"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-black opacity-75" />
-        </div>
-        <div className="relative z-10 container mx-auto px-4">
+      <section className="h-screen flex items-center justify-center text-center">
+        <div className="container mx-auto px-4">
           <h1 className="text-5xl md:text-6xl font-serif mb-4 text-white drop-shadow-lg">
             Prepare to Believe in Magic
           </h1>
