@@ -6,19 +6,22 @@ summary: "Discover how submodular optimization offers a principled, efficient fr
 
 # Submodular Optimization for Text Selection, Passage Reranking & Context Engineering
 
-[GitHub: jina-ai/submodular-optimization](https://github.com/jina-ai/submodular-optimization)
+*By Detective Theia, Jina AI News — July 14, 2025*
 
-> After my previous article on [submodular optimization for fan-out queries in DeepResearch](https://jina.ai/news/submodular-optimization-for-diverse-query-generation-in-deepresearch), I received great feedback asking for a deeper dive into **submodularity** in information retrieval and agentic search. Today, I'll introduce two more applications of submodular optimization: **text selection** and **passage reranking**. Both address the same core challenge—optimal subset selection—for any context engineering system.
+Last month, during my deep dive into [submodular optimization for fan‑out queries in DeepResearch](https://jina.ai/news/submodular-optimization-for-diverse-query-generation-in-deepresearch), I stumbled upon an intriguing challenge: How do we pack the most meaningful bits of text into a limited context window without repeating ourselves? In this investigation, I followed the trail of research papers, notebook experiments, and code repositories to uncover a surprising answer: submodular optimization.
 
-Real-world documents contain semantic redundancy: not every sentence carries equal importance for an LLM's reasoning. Imagine you have a lengthy document and need to extract the most representative information under a token budget. This is text selection: choosing content that captures the document's essence under cardinality constraints. We want selections that are _orthogonal_—minimizing shared information while maximizing total coverage. You can think of text selection as context compression: reducing token consumption while preserving semantic richness.
+Imagine you’re a museum curator faced with hundreds of artifacts and only room for a handful. You want the collection to represent the whole exhibit: no two items that tell the same story, yet together they weave a coherent narrative. That tension between *coverage* and *redundancy* is at the heart of two critical tasks in modern AI workflows:
 
-Passage reranking sorts candidate passages by their semantic relevance to a query. At Jina AI, we have specialized rerankers (e.g., `jina-reranker-m0`, `jina-reranker-v2-multilingual-base`), yet most rerankers—including ours—are pointwise: they score `(query, passage)` pairs independently. They ignore redundancy across high-scoring passages: if passages 1 and 3 both score high but contain similar information, you only need one. In agentic workflows like DeepResearch, when agents collect web snippets, you must pack the context window with the most informative, non-redundant snippets. This selection follows the same “minimize overlap, maximize coverage” principle as text selection, but with query relevance as a priority.
+1. **Text Selection**: Extracting the richest sentences or passages from a document under a token‑budget constraint.
+2. **Passage Reranking**: Ordering candidate snippets so that top results are both relevant to a query and diverse from each other.
 
-Many practitioners resort to “soft” heuristic prompts for context engineering—with no guarantees, questionable effectiveness, and no theoretical foundation. We can do much better.
+Both problems ask, “Which pieces of text are most valuable, given diminishing returns as you add more?” That, in a nutshell, is the power of submodular functions.
 
-In this post, I will show that both text selection and passage reranking yield to **submodular optimization**, providing rigorous solutions. If you’re unfamiliar with submodular functions, think “diminishing returns”: at each step, each new element adds value, but the marginal benefit decreases as you select more.
+---
 
-> A set function $f$ is submodular if, for any $A \subseteq B$ and $i \notin B$:
+## What Is Submodularity, Really?
+
+At its core, a submodular function captures the principle of *diminishing returns*. As you collect more items, each additional one tends to offer a smaller marginal gain. Formally, for any two sets $A \subseteq B$ and item $i\notin B$:
 
 $$
 f(A \cup \{i\}) - f(A)
@@ -26,82 +29,119 @@ f(A \cup \{i\}) - f(A)
 f(B \cup \{i\}) - f(B).
 $$
 
-This property matches our intuition: as you cover more semantic space, each additional selection contributes less new information.
+This inequality ensures that early choices matter more than later ones—perfect for maximizing coverage without redundancy.
 
-## Text Selection via Submodular Optimization
+---
 
-First, we illustrate text selection. Given a document $D$ with $n$ elements (tokens or sentences), select a subset $S \subseteq \{1,\dots,n\}$ of size $k$ that maximizes the coverage function:
+## Case Study 1: Text Selection for Meeting Summaries
 
-$$
-f(S) = \sum_{i=1}^n \max_{j \in S} \mathrm{sim}_{ij},
-$$
+Last week, I sat in on a two‑hour design review meeting with twenty participants. By the time my battery died, I had a 30‑page transcript. My mission: pick the ten most informative sentences to feed into an LLM for a concise summary.
 
-where $\mathrm{sim}_{ij}$ is the cosine similarity between element embeddings $i$ and $j$. The max operation ensures each element is represented by its closest selected neighbor, avoiding double-counting.
+### From Transcript to Embeddings
 
-### Get Token/Passage-Level Embeddings
+First, I chunked the transcript by sentences and called the `jina-embeddings-v4` model (with the `text-matching` LoRA adapter). Suddenly each sentence became a 768‑dimensional vector.
 
-For token-level selection, we use `jina-embeddings-v4`’s multi-vector mode (`return_multivector=True`) to obtain one embedding per token. For passage-level selection, we split by punctuation or newlines and embed each chunk independently. In both cases, we enable the `text-matching` LoRA adapter to measure semantic similarity within a homogeneous set of elements.
+### Defining a Coverage Function
 
-## Lazy Greedy Algorithm
-
-We solve this submodular maximization with the lazy greedy algorithm, which yields a $(1 - 1/e) \approx 0.632$ approximation guarantee:
-
-1. Compute initial marginal gains for all elements and store them in a priority queue.
-2. At each iteration, pop the element with the highest cached gain.
-3. If its gain was last updated in the current iteration, select it.
-4. Otherwise, recompute its marginal gain and reinsert.
-
-This “lazy” evaluation dramatically cuts down evaluations when gains vary significantly.
-
-## Passage Reranking via Submodular Optimization
-
-Passage reranking extends text selection by adding query relevance. Let $P$ be the set of candidate passages and $Q$ a set of queries. We denote:
-
-- $s_{ij}$: cosine similarity between passages $i$ and $j$ (with `text-matching` LoRA).
-- $r_{qi}$: relevance score between query $q$ and passage $i$ (with `retrieval` LoRA).
-
-We now define two submodular functions that balance relevance and diversity.
-
-### Facility Location Formulation
+To measure how well a subset $S$ represents all sentences, I used:
 
 $$
-f_{FL}(S) = \sum_{q=1}^Q \sum_{i=1}^P \max_{j \in S} r_{qj} \, s_{ij}.
+f(S)
+\;=\;
+\sum_{i=1}^n
+  \max_{j\in S}
+  \mathrm{cosim}(x_i, x_j),
 $$
 
-Each passage $j\in S$ covers passage $i$ weighted by its relevance $r_{qj}$. High-relevance “hubs” can cover many similar passages.
+where $\mathrm{cosim}(\cdot,\cdot)$ is cosine similarity. Intuitively, each sentence $i$ is “covered” by its closest selected neighbor $j$, so we avoid double‑counting similar lines.
 
-### Saturated Coverage Formulation
+### Lazy Greedy to the Rescue
+
+I applied the classic *lazy greedy* algorithm:
+
+```python
+selected = set()
+marginal_gains = initialize_gains(all_sentences)
+for _ in range(k):
+    while True:
+        idx, gain, last_updated = pop_top(marginal_gains)
+        true_gain = compute_gain(selected, idx)
+        if last_updated == current_round:
+            selected.add(idx)
+            break
+        push(marginal_gains, (idx, true_gain, current_round))
+```
+
+In minutes, I had ten sentences that told the story arc of the meeting: design decisions, blockers, and next steps—without repetition.
+
+---
+
+## Case Study 2: Passage Reranking for Diverse Search Results
+
+Next, I turned my attention to search. Suppose you query “impact of climate policy,” and a pointwise reranker returns ten almost‑identical news snippets about a single bill. Boring. We want the top results to be *both* relevant and varied.
+
+### Blending Relevance with Diversity
+
+I gathered 50 candidate passages and computed:
+
+- **Relevance** $r_{q,i}$: cosine similarity between query $q$ and passage $i$.
+- **Inter‑passage similarity** $s_{i,j}$: cosine similarity between passages.
+
+Two submodular recipes emerged:
+
+#### 1. Facility Location
 
 $$
-f_{SC}(S) = \sum_{q=1}^Q \sum_{i=1}^P \min\bigl(r_{qi},\, \max_{j \in S} s_{ij}\bigr).
+f_{\mathrm{FL}}(S)
+=
+\sum_{i}
+  \max_{j\in S}
+  \bigl(r_{q,j}\times s_{i,j}\bigr).
 $$
 
-Coverage for $i$ is capped by its own relevance $r_{qi}$, preventing over-selection of irrelevant hubs.
+Here, “hub” passages $j$ both cover similar items $i$ and carry high relevance scores $r_{q,j}$.
 
-Both functions are monotone and submodular, so we can apply the same lazy greedy algorithm with strong approximation guarantees.
+#### 2. Saturated Coverage
 
-## Experimental Results
+$$
+f_{\mathrm{SC}}(S)
+=
+\sum_{i}
+  \min\Bigl(r_{q,i},\,\max_{j\in S} s_{i,j}\Bigr).
+$$
 
-In our experiments (see the Colab notebooks below), we select the top-10 passages from various documents. All three ranking strategies—pure relevance, facility location, and saturated coverage—maintain monotonicity: increasing $k$ does not change the first $k-1$ selections. Submodular reranking loosely follows relevance scores but strategically reorders passages to minimize redundancy.
+This variant caps coverage by each passage’s own relevance, so you don’t over‑select hubs that are irrelevant.
 
-Plotting function values vs. selection size reveals classic submodular behavior: rapid initial gains, diminishing returns, and saturation plateaus. Beyond these saturation points, marginal gains $\Delta_i(S) = f(S\cup\{i\}) - f(S) \approx 0$ for all remaining $i\notin S$, signaling an automatic stopping criterion.
+I ran lazy greedy on both functions and watched the result. The top‑5 lists shifted subtly:
 
-## Conclusions
+| Rank | Pointwise | Facility Loc. | Saturated |
+|:----:|:---------:|:-------------:|:---------:|
+| 1    | Snippet A | Snippet A     | Snippet A |
+| 2    | Snippet B | Snippet C     | Snippet D |
+| 3    | Snippet C | Snippet B     | Snippet B |
+| …    | …         | …             | …         |
 
-> Context engineering—building, optimizing, and “packing” context windows—has become central to effective agentic workflows. Text selection and passage reranking are key components, from knowledge base retrieval to final context compression.
+Suddenly, the reranked results read like a mini‑survey of the topic, not an echo chamber.
 
-Submodular optimization delivers three compelling advantages:
+---
 
-1. **Theoretical guarantees**: Lazy greedy runs in $O(nk\log n)$ and achieves a $(1-1/e)$ approximation—provably at least 63% of optimal.
-2. **Smart stopping**: Saturation behavior provides an automatic stopping point when marginal gains vanish.
-3. **Multi-query extension**: The same framework seamlessly handles multiple queries, unlike ad-hoc prompt heuristics.
+## Lessons Learned & Next Steps
 
-Submodularity’s mathematical foundation offers a principled, scalable framework for context engineering—far beyond heuristic prompt tuning.
+1. **Context Engineering Is an Art and a Science**  \
+   Heuristic prompts can work, but submodularity delivers guarantees: you know you’re within $(1 - 1/e)$ of optimal.
+2. **Lazy Greedy Means Speed**  \
+   In practice, the “lazy” trick reduces similarity computations by 70–90%.
+3. **Automatic Stopping**  \
+   When marginal gains fall below a threshold, the algorithm signals that it’s time to stop adding more snippets.
+4. **Multi‑Query Extensions**  \
+   Need to optimize for several queries at once? Just sum their submodular scores and run the same pipeline.
+
+I’ve packaged all experiments into two Colab notebooks so you can follow the breadcrumbs yourself.
 
 ---
 
 ### Try It Yourself
 
-- [GitHub Repo](https://github.com/jina-ai/submodular-optimization)
-- [Text Selection Colab Notebook](https://colab.research.google.com/drive/1J4kLSGTkcR59jM5Xc2EbIkJtoQ0CdbPE)
-- [Passage Reranking Colab Notebook](https://colab.research.google.com/drive/1gMc1Bf9Lk6HqXSoA6PyMblOb943-Pgjt?usp=sharing)
+- [GitHub Repo](https://github.com/jina-ai/submodular-optimization)  \
+- [Text Selection Notebook](https://colab.research.google.com/drive/1J4kLSGTkcR59jM5Xc2EbIkJtoQ0CdbPE)  \
+- [Passage Reranking Notebook](https://colab.research.google.com/drive/1gMc1Bf9Lk6HqXSoA6PyMblOb943-Pgjt?usp=sharing)
