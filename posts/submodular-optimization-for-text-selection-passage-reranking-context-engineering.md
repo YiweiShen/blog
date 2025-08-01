@@ -1,12 +1,11 @@
 ---
-title: "Submodular Optimization for Text Selection, Passage Reranking & Context Engineering"
+title: "Efficient Context Engineering with Submodular Optimization"
 date: "2025-07-14"
 summary: "Discover how submodular optimization offers a principled, efficient framework with theoretical guarantees for context engineering—text selection and passage reranking—and explore practical examples."
 ---
 
-# Submodular Optimization for Text Selection, Passage Reranking & Context Engineering
+# Efficient Context Engineering with Submodular Optimization
 
-*By Detective Theia, Jina AI News — July 14, 2025*
 
 Last month, during my deep dive into [submodular optimization for fan‑out queries in DeepResearch](https://jina.ai/news/submodular-optimization-for-diverse-query-generation-in-deepresearch), I stumbled upon an intriguing challenge: How do we pack the most meaningful bits of text into a limited context window without repeating ourselves? In this investigation, I followed the trail of research papers, notebook experiments, and code repositories to uncover a surprising answer: submodular optimization.
 
