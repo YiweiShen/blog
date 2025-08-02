@@ -45,26 +45,31 @@ export default function MagicPage() {
   }, [charIndex, specIndex, specialties])
 
   return (
-    <div className="text-black">
+    <div className="text-black animate-fadeIn">
       
       <section className="h-screen flex items-center justify-center text-center">
         <div className="container mx-auto px-4">
-          <h1 className="text-5xl md:text-6xl font-serif mb-4 drop-shadow-lg">
-            Prepare to Believe in Magic
-          </h1>
-          <p className="text-xl md:text-2xl mb-6">
+          <div className="relative inline-block mb-4 animate-fadeIn">
+            <h1 className="text-5xl md:text-6xl font-serif drop-shadow-lg relative z-10">
+              Prepare to Believe in Magic
+            </h1>
+            <span className="absolute -top-4 -left-4 text-yellow-300 text-2xl animate-pulse">✨</span>
+            <span className="absolute -top-4 -right-4 text-yellow-300 text-3xl animate-ping">✨</span>
+            <span className="absolute -bottom-4 -right-8 text-yellow-300 text-2xl animate-pulse">✨</span>
+          </div>
+          <p className="text-xl md:text-2xl mb-6 animate-fadeIn">
             Join Mysto the Marvel in a journey beyond imagination.
           </p>
-          <Link href="#contact" className="button">
+          <Link href="#contact" className="button animate-bounce">
             Book a Show
           </Link>
         </div>
       </section>
 
       
-      <section id="about" className="text-center py-20">
+      <section id="about" className="text-center py-20 animate-fadeIn">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-serif mb-4">About Mysto the Marvel</h2>
+          <h2 className="text-3xl font-serif mb-4 inline-block animate-fadeIn">✨ About Mysto the Marvel ✨</h2>
           <p className="max-w-2xl mx-auto mb-6">
             Mysto the Marvel has dazzled audiences worldwide with his captivating performances and
             mind-bending illusions. With years of experience on stage and close-up venues, Mysto
@@ -78,9 +83,9 @@ export default function MagicPage() {
       </section>
 
       
-      <section id="services" className="py-20">
+      <section id="services" className="py-20 animate-fadeIn">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-serif mb-8">Show Offerings</h2>
+          <h2 className="text-3xl font-serif mb-8 inline-block animate-fadeIn">✨ Show Offerings ✨</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {[
               { title: 'Private Parties', desc: 'Intimate performances tailored for your gathering.' },
@@ -97,12 +102,12 @@ export default function MagicPage() {
       </section>
 
       
-      <section id="gallery" className="py-20">
+      <section id="gallery" className="py-20 animate-fadeIn">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-serif mb-8">Gallery</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {galleryImages.map((src, i) => (
-              <div key={i} className="overflow-hidden rounded-lg">
+              <div key={i} className="overflow-hidden rounded-lg animate-float">
                 <Image
                   src={src}
                   alt={`Mysto Photo ${i + 1}`}
@@ -117,9 +122,9 @@ export default function MagicPage() {
       </section>
 
       
-      <section id="testimonials" className="py-20">
+      <section id="testimonials" className="py-20 animate-fadeIn">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-serif mb-8">Testimonials</h2>
+          <h2 className="text-3xl font-serif mb-8 inline-block animate-fadeIn">✨ Testimonials ✨</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               { quote: 'Absolutely mesmerizing performance!', name: 'Alice Johnson', rating: 5 },
@@ -139,9 +144,9 @@ export default function MagicPage() {
       </section>
 
       
-      <section id="contact" className="py-20">
+      <section id="contact" className="py-20 animate-fadeIn">
         <div className="container mx-auto px-4 max-w-lg">
-          <h2 className="text-3xl font-serif mb-6 text-center">Contact</h2>
+          <h2 className="text-3xl font-serif mb-6 text-center inline-block animate-fadeIn">✨ Contact ✨</h2>
           <form className="space-y-4">
             {['Name', 'Email', 'Message'].map((field) =>
               field !== 'Message' ? (
