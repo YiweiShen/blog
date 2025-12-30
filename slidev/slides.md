@@ -1,126 +1,177 @@
 ---
 theme: seriph
-background: "https://cover.sli.dev"
-title: "Prompt Engineering Best Practices"
+background: "https://images.unsplash.com/photo-1454165205744-3b78555e5572?auto=format&fit=crop&w=1600&q=80"
+title: "Business Model Canvas Explained"
 info: |
-  Clear, context-rich prompts for better AI outputs.
-class: text-center
+  A concise walkthrough of the Business Model Canvas, its nine blocks, and how to use it in workshops.
+class: text-left
 drawings:
   persist: false
 transition: slide-left
 mdc: true
 ---
 
-# Prompt Engineering Best Practices
+# Business Model Canvas Explained
 
 ## Agenda
-- General Principles
-- Controlling Output Format
-- Thinking & Tool Strategies
-- Code & Visual Generation Tips
-- Summary
+- Purpose of the canvas
+- The nine building blocks
+- How to fill it in
+- Facilitation tips
+- Example prompts and next steps
 
 ---
 
-# General Principles
+# Why Use the Canvas?
 
-> Get clearer, more accurate AI responses by applying these core techniques.
+> A one-page, visual summary of how a business creates, delivers, and captures value.
 
-1. **Be explicit with instructions**
-2. **Add context & explain the “why”**
-3. **Provide precise examples & details**
-
----
-
-# Be Explicit with Instructions
-
-> Claude responds best to clear, detailed directives.
-
-**Less effective:**
-```
-Create an analytics dashboard
-```
-**More effective:**
-```
-Create an analytics dashboard. Include as many relevant features and interactions as possible. Go beyond the basics to deliver a fully featured implementation.
-```
+1. Align teams on a shared model quickly
+2. Spot risks and assumptions early
+3. Compare ideas side-by-side
+4. Turn strategy into concrete experiments
 
 ---
 
-# Add Context to Improve Performance
+# The Nine Building Blocks
 
-> Explaining “why” helps the model understand your goals.
-
-**Less effective:**
-```
-NEVER use ellipses
-```
-**More effective:**
-```
-Your response will be read aloud by a text-to-speech engine, so never use ellipses—otherwise the engine won’t know how to pronounce them.
-```
-
----
-
-# Be Vigilant with Examples & Details
-
-> The model mirrors examples you provide—ensure they align with desired behavior and avoid reinforcing unwanted patterns.
+1. **Value Proposition** - the job-to-be-done you solve  
+2. **Customer Segments** - for whom you create value  
+3. **Channels** - how you reach and deliver  
+4. **Customer Relationships** - how you acquire, retain, grow  
+5. **Revenue Streams** - how money comes in  
+6. **Key Resources** - critical assets you need  
+7. **Key Activities** - the work you must excel at  
+8. **Key Partnerships** - outside help and leverage  
+9. **Cost Structure** - major fixed and variable costs
 
 ---
 
-# Controlling Output Format
+# Value Proposition
 
-> Use these techniques to steer response formatting.
+> The core benefit or outcome you deliver.
 
-1. **Tell the model what to do, not what not to do**
-2. **Use XML-like tags to wrap output**
-3. **Match prompt style to desired format (Markdown, JSON, etc.)**
-
----
-
-# Thinking & Tool Strategies
-
-> Leverage advanced capabilities for complex tasks.
-
-**Interleaved Thinking:**  
-`After receiving tool results, reflect on quality and plan next steps before proceeding.`
-
-**Parallel Tool Calling:**  
-`Invoke multiple independent tools simultaneously for efficiency.`
-
-**Clean Up Temp Files:**  
-`If you create any helper scripts or files, remove them at the end of the task.`
+- What pain do you remove or gain do you create?
+- How is this better than existing options?
+- What proof shows this matters (data, testimonials)?
 
 ---
 
-# Code & Visual Generation Tips
+# Customer Segments
 
-> Encourage detail and polish in code and frontend designs.
+> The distinct groups you serve.
 
-- “Include as many relevant features and interactions as possible.”
-- “Add hover states, transitions, and micro‑interactions.”
-- “Apply design principles: hierarchy, contrast, balance, movement.”
-
----
-
-# Avoid Hard‑Coding & Focus on Robustness
-
-> Prioritize general-purpose solutions over test-specific hacks.
->
-`Please implement a maintainable solution that works for all valid inputs. Do not hard-code values to pass tests.`
+- Primary users vs. buyers?
+- Early adopters vs. later majority?
+- What jobs, pains, and contexts differ by segment?
 
 ---
 
-# Summary & Next Steps
+# Channels
 
-**General Principles:** Be explicit, add context, use precise examples  
-**Format & Thinking:** Control output, interleave reasoning, clean up tools  
-**Code & Design:** Encourage polish, avoid hard-coding  
+> How you reach customers and deliver value.
 
-> Practice these to get the most out of AI assistants in your workflows.
+- Awareness: ads, content, events
+- Evaluation: demos, trials, sales calls
+- Delivery: app, retail, partners, support
+
+---
+
+# Customer Relationships
+
+> How you manage the lifecycle.
+
+- Onboarding: self-serve vs. high-touch
+- Retention: nurture, community, support, SLAs
+- Expansion: cross-sell, upsell, referrals
+
+---
+
+# Revenue Streams
+
+> How the business captures value.
+
+- Pricing: one-time, subscription, usage, tiered
+- Unit economics: ARPU, LTV, margin assumptions
+- Ancillary: services, ads, marketplace fees
+
+---
+
+# Key Resources
+
+> The assets you rely on.
+
+- Team skills, IP, brand, data, tech stack
+- Physical assets or distribution rights
+- Which are scarce, defensible, or bottlenecks?
+
+---
+
+# Key Activities
+
+> What you must do exceptionally well.
+
+- Build and ship product? Acquire supply? Run operations?
+- Metrics that prove excellence (activation, uptime, quality)
+
+---
+
+# Key Partnerships
+
+> External parties that lower risk or increase leverage.
+
+- Strategic alliances, suppliers, distributors
+- Platform dependencies, integrations, regulators
+- What happens if a partner fails?
+
+---
+
+# Cost Structure
+
+> The major costs to run the model.
+
+- Fixed vs. variable; people vs. infrastructure vs. acquisition
+- Which costs scale with growth? Which are step-changes?
+- Do costs align with the chosen revenue model?
+
+---
+
+# How to Fill the Canvas
+
+1. Start with **Value Proposition** and **Customer Segments**
+2. Map **Channels** and **Customer Relationships**
+3. Add **Revenue Streams** and **Cost Structure** to stress-test viability
+4. Close with **Key Resources**, **Activities**, **Partnerships**
+5. Mark assumptions vs. facts; turn assumptions into experiments
+
+---
+
+# Facilitation Tips
+
+- Time-box each block (5-10 minutes) to keep flow
+- Use sticky notes: one idea per note; cluster duplicates
+- Push for specifics: numbers, sources, owners
+- End with top three risks and next validation steps
+
+---
+
+# Example Prompts for Teams
+
+- "Describe our top two customer segments and their key pains."
+- "List three channels to reach Segment A with rough CAC estimates."
+- "What evidence do we have that this value proposition matters?"
+- "What assumptions must be true for our revenue model to work?"
+
+---
+
+# Next Steps
+
+- Turn highest-risk assumptions into experiments (interviews, landing pages, pilots)
+- Build a lightweight metrics dashboard: activation, retention, CAC, LTV
+- Revisit the canvas after each experiment to reflect learning
 
 ---
 
 # Thank You!
 
-> Questions? Reach out to discuss more prompt engineering tips.
+> Ready to map your idea? Grab the canvas and start with the customer.
