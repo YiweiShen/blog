@@ -12,5 +12,5 @@ export default function PageContainer({ children }: { children: ReactNode }) {
   if (pathname === "/magic") {
     return <>{children}</>;
   }
-  return <div className="container mx-auto px-8 py-8">{children}</div>;
+  return <div className="mx-auto w-full max-w-6xl px-6 py-10 md:py-14">{children}</div>;
 }

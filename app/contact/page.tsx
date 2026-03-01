@@ -7,17 +7,21 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow">
-      <h2 className="text-4xl font-bold mb-4">Contact</h2>
-      <p className="text-lg">
-        Feel free to reach out via email at{' '}
+    <section className="rounded-3xl border border-slate-200 bg-white/85 p-8 shadow-[0_24px_70px_-50px_rgba(15,23,42,0.65)] backdrop-blur sm:p-10">
+      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-sky-700">Contact</p>
+      <h2 className="font-[family-name:var(--font-display)] text-4xl font-semibold tracking-tight text-slate-950">
+        Let&apos;s connect.
+      </h2>
+      <p className="mt-6 max-w-2xl text-lg text-slate-600">
+        Reach out anytime at{' '}
         <a
           href="mailto:example@example.com"
-          className="text-blue-600 hover:underline"
+          className="font-medium text-sky-700 underline decoration-sky-300 underline-offset-4 transition hover:text-sky-800"
         >
           example@example.com
-        </a>.
+        </a>
+        .
       </p>
-    </div>
+    </section>
   );
 }
