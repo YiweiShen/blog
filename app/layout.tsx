@@ -16,8 +16,8 @@ const grotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: {
-    default: "blog",
-    template: "%s | blog",
+    default: "Blog",
+    template: "%s | Blog",
   },
   description: "Thoughtful engineering notes, practical guides, and experiments.",
   alternates: {
@@ -48,7 +48,7 @@ export default function RootLayout({
           </main>
           <footer className="mt-16 border-t border-slate-200/70 bg-white/80 backdrop-blur">
             <div className="mx-auto max-w-6xl px-6 py-6 text-center text-sm text-slate-600">
-              &copy; {new Date().getFullYear()} blog. All rights reserved.
+              &copy; {new Date().getFullYear()} Blog. All rights reserved.
             </div>
           </footer>
           <div className="py-3 text-center text-xs text-slate-500">

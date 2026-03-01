@@ -3,7 +3,7 @@ import { getAllPosts, PostMeta } from '../lib/posts';
 
 export const metadata = {
   title: 'Article List',
-  description: 'Welcome to the blog article list page',
+  description: 'Welcome to the Blog article list page',
 };
 
 export default function Home() {
@@ -33,7 +33,7 @@ export default function Home() {
               href="https://github.com/YiweiShen/blog"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex rounded-xl bg-slate-900 px-4 py-2 font-medium text-white transition hover:bg-slate-700"
+              className="inline-flex rounded-xl border border-slate-300 bg-white px-4 py-2 font-medium text-slate-800 transition hover:border-slate-400 hover:text-slate-900"
             >
               View Source
             </a>
@@ -71,31 +71,31 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 gap-4">
           {remaining.map((post: PostMeta) => (
-            <article
+            <Link
               key={post.slug}
-              className="group rounded-2xl border border-slate-200/80 bg-white p-6 transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg hover:shadow-slate-900/5"
+              href={`/posts/${post.slug}`}
+              className="group block rounded-2xl border border-slate-200/80 bg-white p-6 transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg hover:shadow-slate-900/5"
             >
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                <div className="space-y-2">
-                  <Link
-                    href={`/posts/${post.slug}`}
-                    className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-tight text-slate-900 transition group-hover:text-sky-700"
-                  >
-                    {post.title}
-                  </Link>
-                  {post.summary ? (
-                    <p className="line-clamp-2 text-sm text-slate-600">{post.summary}</p>
-                  ) : null}
+              <article>
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <div className="space-y-2">
+                    <h4 className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-tight text-slate-900 transition group-hover:text-sky-700">
+                      {post.title}
+                    </h4>
+                    {post.summary ? (
+                      <p className="line-clamp-2 text-sm text-slate-600">{post.summary}</p>
+                    ) : null}
+                  </div>
+                  <time className="shrink-0 text-sm text-slate-500">
+                    {new Date(post.date).toLocaleDateString('en-US', {
+                      month: 'short',
+                      day: 'numeric',
+                      year: 'numeric',
+                    })}
+                  </time>
                 </div>
-                <time className="shrink-0 text-sm text-slate-500">
-                  {new Date(post.date).toLocaleDateString('en-US', {
-                    month: 'short',
-                    day: 'numeric',
-                    year: 'numeric',
-                  })}
-                </time>
-              </div>
-            </article>
+              </article>
+            </Link>
           ))}
           {posts.length <= 1 ? (
             <p className="rounded-2xl border border-dashed border-slate-300 bg-white/70 p-8 text-center text-slate-500">

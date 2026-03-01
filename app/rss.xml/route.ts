@@ -35,9 +35,9 @@ export async function GET() {
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
 <channel>
-  <title>blog</title>
+  <title>Blog</title>
   <link>${origin}</link>
-  <description>RSS feed for blog posts</description>
+  <description>RSS feed for Blog posts</description>
   <language>en-us</language>
   ${itemsXml}
 </channel>
