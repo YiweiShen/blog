@@ -1,287 +1,214 @@
 @import "tailwindcss";
 
+:root {
+  --font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --bg: #f8fbff;
+  --surface: #ffffff;
+  --foreground: #0f172a;
+  --muted: #475569;
+  --line: #e2e8f0;
+  --brand: #0ea5e9;
+  --brand-strong: #0369a1;
+}
 
-/* Markdown content styling */
-.markdown {
-  line-height: 1.75;
-  font-size: 1.0625rem;
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  background: var(--bg);
   color: var(--foreground);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
-.markdown p {
-  margin: 1em 0;
+
+a {
+  color: inherit;
 }
-.markdown h2 {
-  margin: 1.5em 0 0.5em;
-  font-size: 1.75em;
-  font-weight: bold;
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-.markdown h3 {
-  margin: 1.25em 0 0.5em;
-  font-size: 1.5em;
-  font-weight: bold;
+
+main > * {
+  animation: riseIn 420ms ease-out both;
 }
+
+.markdown {
+  color: var(--foreground);
+  font-size: 1.08rem;
+  line-height: 1.85;
+}
+
+.markdown > *:first-child {
+  margin-top: 0;
+}
+
+.markdown > *:last-child {
+  margin-bottom: 0;
+}
+
+.markdown h2,
+.markdown h3,
 .markdown h4 {
-  margin: 1em 0 0.5em;
-  font-size: 1.25em;
-  font-weight: bold;
+  font-family: var(--font-display);
+  color: #020617;
+  letter-spacing: -0.02em;
+  margin-top: 1.65em;
+  margin-bottom: 0.55em;
+  line-height: 1.2;
 }
+
+.markdown h2 {
+  font-size: 2rem;
+}
+
+.markdown h3 {
+  font-size: 1.5rem;
+}
+
+.markdown h4 {
+  font-size: 1.25rem;
+}
+
+.markdown p,
+.markdown ul,
+.markdown ol,
+.markdown table,
+.markdown blockquote {
+  margin: 1.1em 0;
+}
+
 .markdown ul,
 .markdown ol {
-  margin: 1em 0 1em 1.5em;
+  padding-left: 1.4em;
 }
+
 .markdown li {
   margin: 0.5em 0;
 }
-.markdown blockquote {
-  border-left: 4px solid #D1D5DB;
-  padding-left: 1em;
-  margin: 1.5em 0;
-  color: #6B7280;
-  background: #F9FAFB;
+
+.markdown a {
+  color: var(--brand-strong);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }
+
+.markdown a:hover {
+  color: var(--brand);
+}
+
+.markdown blockquote {
+  border-left: 3px solid #7dd3fc;
+  background: #f0f9ff;
+  color: #0c4a6e;
+  padding: 0.85em 1em;
+  border-radius: 0.75rem;
+}
+
 .markdown img {
   display: block;
   max-width: 100%;
-  height: auto;
   margin: 1.5em 0;
-  border-radius: 4px;
+  border-radius: 0.9rem;
+  border: 1px solid var(--line);
 }
+
 .markdown table {
   width: 100%;
-  margin: 1.5em 0;
   border-collapse: collapse;
+  font-size: 0.98rem;
 }
+
 .markdown th,
 .markdown td {
-  border: 1px solid #D1D5DB;
-  padding: 0.5em 1em;
-}
-.markdown code {
-  background: #F3F4F6;
-  padding: 0.2em 0.4em;
-  border-radius: 4px;
-  font-size: 0.95em;
-}
-.markdown a {
-  color: #1D4ED8;
-  text-decoration: underline;
-}
-.markdown a:hover {
-  color: #1E40AF;
+  border: 1px solid var(--line);
+  padding: 0.65em 0.8em;
+  text-align: left;
 }
 
-
-
-
-/* Design Tokens */
-:root {
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-serif: 'Playfair Display', Georgia, serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
-  --bg: #FFFFFF;
-  --surface: #F8F8F8;
-  --text-primary: #222222;
-  --text-secondary: #555555;
-  --foreground: var(--text-primary);
-  --accent: #4A90E2;
-  --accent-hover: #357ABD;
-  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.05);
-  --card-bg: #FFFFFF;
+.markdown th {
+  background: #f8fafc;
 }
 
-/* Global Resets */
-html {
-  box-sizing: border-box;
-  font-size: 100%;
-}
-*, *::before, *::after {
-  box-sizing: inherit;
-}
-
-/* Typography & Layout */
-body {
-  background-color: var(--bg);
-  color: var(--text-primary);
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  line-height: 1.6;
-}
-section {
-  padding: 4rem 0;
+.markdown p code,
+.markdown li code,
+.markdown blockquote code {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.35rem;
+  color: #0f172a;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  padding: 0.14em 0.38em;
 }
 
-h1, h2, h3, h4 {
-  font-family: var(--font-serif);
-  color: #111111;
-  margin-bottom: 1rem;
-}
-
-h1 { font-size: 3rem; }
-h2 { font-size: 2.5rem; }
-h3 { font-size: 2rem; }
-h4 { font-size: 1.5rem; }
-/* Footer styling for build time display */
-footer {
-  text-align: center;
-  font-size: 0.875rem;
-  color: var(--foreground);
-  padding: 1rem 0;
-}
-/* Code block styling */
 .markdown pre {
-  background: var(--card-bg);
-  padding: 1rem;
-  border-radius: 0.5rem;
-  overflow-x: auto;
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
   position: relative;
-  margin: 1.5rem 0;
+  margin: 1.55em 0;
+  border: 1px solid #dbe4f0;
+  border-radius: 0.9rem;
+  background: #f8fafc;
+  overflow-x: auto;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
-.markdown code {
+.markdown pre code {
+  display: block;
   font-family: var(--font-mono);
-  font-size: 0.875rem;
+  font-size: 0.86rem;
 }
 
 .markdown code .line {
   display: block;
-  padding-left: 3em;
+  min-height: 1.55em;
+  padding-left: 3.2em;
+  padding-right: 1rem;
   position: relative;
 }
 
 .markdown code .line::before {
+  color: #94a3b8;
   content: attr(data-line-number);
+  left: 0.8rem;
   position: absolute;
-  left: 0;
-  width: 2em;
   text-align: right;
-  margin-right: 1em;
-  color: #6b7280;
+  width: 1.6rem;
 }
 
 .copy-button {
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  background: var(--card-bg);
-  color: var(--foreground);
-  border: none;
-  padding: 0.25rem 0.5rem;
-  font-size: 0.75rem;
-  border-radius: 4px;
+  top: 0.7rem;
+  right: 0.7rem;
+  border: 1px solid #d1dbe8;
+  background: rgba(255, 255, 255, 0.92);
+  color: #334155;
+  border-radius: 0.55rem;
+  padding: 0.25rem 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 600;
   cursor: pointer;
-}
-/* Buttons */
-.button {
-  display: inline-block;
-  font-family: var(--font-sans);
-  font-weight: 500;
-  padding: 0.75rem 1.5rem;
-  border-radius: 6px;
-  background-color: var(--accent);
-  color: #fff;
-  text-decoration: none;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-  box-shadow: var(--shadow-light);
+  transition: all 0.2s ease;
 }
 
-.button:hover {
-  background-color: var(--accent-hover);
-  transform: translateY(-1px);
-}
-
-.button:active {
-  transform: translateY(0);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-}
-
-/* Form Inputs */
-input[type="text"],
-input[type="email"],
-textarea,
-select {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  background-color: var(--surface);
-  font-family: var(--font-sans);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
-  outline: none;
-}
-
-/* Cards */
-.card {
-  background-color: #fff;
-  color: var(--text-primary);
-  border-radius: 8px;
-  box-shadow: var(--shadow-light);
-  padding: 1.5rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-}
-
-/* Link Underline Animation */
-a {
-  position: relative;
-  color: var(--accent);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  width: 100%;
-  height: 2px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.2s ease;
-}
-
-a:hover {
-  color: var(--accent-hover);
-}
-
-a:hover::after {
-  transform: scaleX(1);
-}
-
-/* Responsive Font Scaling */
-@media (min-width: 768px) {
-  html { font-size: 112.5%; }
-}
-
-@media (min-width: 1024px) {
-  html { font-size: 125%; }
-}
-
-/* Smooth scrolling for anchor links */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Cursor blink for typewriter effect */
-.blinking-cursor {
-  display: inline-block;
-  width: 1ch;
-  animation: blink 1s step-start infinite;
-}
-@keyframes blink {
-  50% { opacity: 0; }
+.copy-button:hover {
+  border-color: #94a3b8;
+  color: #0f172a;
 }

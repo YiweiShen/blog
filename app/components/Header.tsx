@@ -1,28 +1,37 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import SearchBox from './SearchBox'
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const pathname = usePathname()
+  const navItems = [
+    { href: '/', label: 'Home' },
+    { href: '/about', label: 'About' },
+    { href: '/contact', label: 'Contact' },
+    { href: '/slidev', label: 'Slides' },
+    { href: '/magic', label: 'Magic' },
+  ]
 
   return (
-    <header className='sticky top-0 bg-white shadow z-50'>
-      <div className='container mx-auto px-4 py-4 flex items-center justify-between relative'>
-        <div className='flex items-center space-x-6'>
-          <h1 className='text-xl font-bold'>
-            <Link href='/' className='text-gray-900 hover:text-blue-500'>
-              blog
+    <header className='sticky top-0 z-50 border-b border-slate-200/70 bg-white/85 backdrop-blur-xl'>
+      <div className='mx-auto flex max-w-6xl items-center justify-between px-6 py-4'>
+        <div className='flex items-center gap-4 md:gap-8'>
+          <h1 className='font-[family-name:var(--font-display)] text-xl font-semibold tracking-tight text-slate-950'>
+            <Link href='/' className='transition hover:text-sky-600'>
+              yiwei.sh/blog
             </Link>
           </h1>
-          <div className='hidden sm:block'>
+          <div className='hidden md:block'>
             <SearchBox />
           </div>
         </div>
         <button
           aria-label='Toggle menu'
           onClick={() => setMenuOpen(!menuOpen)}
-          className='sm:hidden text-gray-900 hover:text-blue-500 focus:outline-none'
+          className='rounded-xl border border-slate-300 p-2 text-slate-700 transition hover:border-slate-400 hover:text-slate-900 sm:hidden'
         >
           {menuOpen ? (
             <svg
@@ -57,39 +66,31 @@ export default function Header() {
         <nav
           className={`${
             menuOpen ? 'block' : 'hidden'
-          } absolute top-full left-0 w-full sm:w-auto bg-white sm:relative sm:block`}
+          } absolute left-0 top-full w-full border-b border-slate-200 bg-white px-6 py-4 sm:static sm:block sm:w-auto sm:border-none sm:bg-transparent sm:p-0`}
         >
-          <ul className='flex flex-col space-y-2 p-4 sm:flex-row sm:space-y-0 sm:space-x-6 sm:p-0'>
-            <li>
-              <Link href='/' className='text-gray-700 hover:text-blue-500'>
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link href='/about' className='text-gray-700 hover:text-blue-500'>
-                About
-              </Link>
-            </li>
-            <li>
-              <Link
-                href='/contact'
-                className='text-gray-700 hover:text-blue-500'
-              >
-                Contact
-              </Link>
-            </li>
-            <li>
-              <Link
-                href='/slidev'
-                className='text-gray-700 hover:text-blue-500'
-              >
-                Slides
-              </Link>
-            </li>
-            <li>
-              <Link href='/magic' className='text-gray-700 hover:text-blue-500'>
-                Magic
-              </Link>
+          <ul className='flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-1'>
+            {navItems.map((item) => {
+              const isActive =
+                item.href === '/'
+                  ? pathname === '/'
+                  : pathname.startsWith(item.href)
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={`inline-flex rounded-xl px-3 py-2 text-sm font-medium transition ${
+                      isActive
+                        ? 'bg-slate-900 text-white'
+                        : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              )
+            })}
+            <li className='pt-2 sm:hidden'>
+              <SearchBox />
             </li>
           </ul>
         </nav>

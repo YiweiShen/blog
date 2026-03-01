@@ -7,11 +7,14 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow">
-      <h2 className="text-4xl font-bold mb-4">About</h2>
-      <p className="text-lg">
-        Welcome to blog! This is a simple blog built with Next.js.
+    <section className="rounded-3xl border border-slate-200 bg-white/85 p-8 shadow-[0_24px_70px_-50px_rgba(15,23,42,0.65)] backdrop-blur sm:p-10">
+      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-sky-700">About</p>
+      <h2 className="font-[family-name:var(--font-display)] text-4xl font-semibold tracking-tight text-slate-950">
+        Building useful software with taste and intent.
+      </h2>
+      <p className="mt-6 max-w-2xl text-lg text-slate-600">
+        Welcome to blog. This space shares notes on engineering craft, developer tools, and the systems behind resilient product teams.
       </p>
-    </div>
+    </section>
   );
 }
