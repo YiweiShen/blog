@@ -21,7 +21,7 @@ export default function SearchBox() {
           const posts: PostMeta[] = await res.json();
           setAllPosts(posts);
           const fuseInstance = new Fuse(posts, {
-            keys: ['title', 'summary'],
+            keys: ['title', 'summary', 'content'],
             includeScore: true,
             threshold: 0.4,
             ignoreLocation: true,
@@ -37,7 +37,8 @@ export default function SearchBox() {
   }, []);
 
   useEffect(() => {
-    if (!query) {
+    const q = query.trim();
+    if (!q) {
       setResults([]);
       setShowResults(false);
       return;
@@ -45,7 +46,6 @@ export default function SearchBox() {
     if (!fuse) return;
 
     const handler = setTimeout(() => {
-      const q = query.trim();
       const fuseResults = fuse.search(q, { limit: 5 });
       let matches: PostMeta[];
       if (fuseResults.length > 0) {
@@ -56,7 +56,8 @@ export default function SearchBox() {
           .filter(
             (post) =>
               (post.title && post.title.toLowerCase().includes(qLower)) ||
-              (post.summary && post.summary.toLowerCase().includes(qLower))
+              (post.summary && post.summary.toLowerCase().includes(qLower)) ||
+              (post.content && post.content.toLowerCase().includes(qLower))
           )
           .slice(0, 5);
       }
@@ -89,7 +90,7 @@ export default function SearchBox() {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onBlur={() => setTimeout(() => setShowResults(false), 100)}
-        onFocus={() => query && results.length > 0 && setShowResults(true)}
+        onFocus={() => query.trim() && results.length > 0 && setShowResults(true)}
       />
       {showResults && results.length > 0 && (
         <ul className="absolute left-0 top-[calc(100%+0.5rem)] z-50 max-h-72 w-full overflow-auto rounded-2xl border border-slate-200 bg-white p-2 shadow-xl shadow-slate-900/10">
