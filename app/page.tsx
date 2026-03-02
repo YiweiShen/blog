@@ -42,24 +42,28 @@ export default function Home() {
       </section>
 
       {featured ? (
-        <section className="rounded-3xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-8 shadow-[0_30px_90px_-60px_rgba(8,47,73,0.55)]">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-sky-700">Latest</p>
-          <Link href={`/posts/${featured.slug}`} className="group mt-3 block">
-            <h3 className="font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-slate-950 transition group-hover:text-sky-700 sm:text-4xl">
+        <Link
+          href={`/posts/${featured.slug}`}
+          className="group block rounded-3xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-8 shadow-[0_30px_90px_-60px_rgba(8,47,73,0.55)] transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-[0_36px_100px_-56px_rgba(8,47,73,0.6)]"
+          aria-label={`Read latest article: ${featured.title}`}
+        >
+          <section>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-sky-700">Latest</p>
+            <h3 className="mt-3 font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-slate-950 transition group-hover:text-sky-700 sm:text-4xl">
               {featured.title}
             </h3>
-          </Link>
-          {featured.summary ? (
-            <p className="mt-4 max-w-3xl text-slate-600">{featured.summary}</p>
-          ) : null}
-          <time className="mt-6 block text-sm text-slate-500">
-            {new Date(featured.date).toLocaleDateString('en-US', {
-              month: 'long',
-              day: 'numeric',
-              year: 'numeric',
-            })}
-          </time>
-        </section>
+            {featured.summary ? (
+              <p className="mt-4 max-w-3xl text-slate-600">{featured.summary}</p>
+            ) : null}
+            <time className="mt-6 block text-sm text-slate-500">
+              {new Date(featured.date).toLocaleDateString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+              })}
+            </time>
+          </section>
+        </Link>
       ) : null}
 
       <section className="space-y-4">
