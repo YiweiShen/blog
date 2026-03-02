@@ -65,7 +65,7 @@ export default function MagicPage() {
   )
 
   return (
-    <div className="relative overflow-hidden bg-slate-950 text-slate-100">
+    <div className="relative min-h-screen overflow-hidden bg-slate-950 text-slate-100">
       <div className="pointer-events-none absolute -top-44 left-1/2 h-80 w-[36rem] -translate-x-1/2 rounded-full bg-sky-500/25 blur-3xl" />
       <div className="pointer-events-none absolute bottom-0 right-[-12rem] h-72 w-72 rounded-full bg-emerald-400/20 blur-3xl" />
 
@@ -82,13 +82,13 @@ export default function MagicPage() {
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
             href="#book"
-            className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-200"
+            className="rounded-xl bg-gradient-to-r from-sky-300 to-emerald-300 px-5 py-3 text-sm font-semibold text-slate-950 shadow-[0_18px_40px_-24px_rgba(52,211,153,0.8)] transition hover:from-sky-200 hover:to-emerald-200"
           >
             Book a Show
           </Link>
           <a
             href="mailto:bookings@mysto.show"
-            className="rounded-xl border border-slate-600 px-5 py-3 text-sm font-semibold text-slate-200 transition hover:border-slate-400 hover:bg-slate-900/70"
+            className="rounded-xl border border-sky-400/45 bg-sky-500/10 px-5 py-3 text-sm font-semibold text-sky-100 transition hover:border-sky-300/65 hover:bg-sky-500/20"
           >
             Get Pricing
           </a>
@@ -105,8 +105,8 @@ export default function MagicPage() {
                 onClick={() => setActiveTab(tab)}
                 className={`rounded-xl px-4 py-2 text-sm font-medium transition ${
                   activeTab === tab
-                    ? 'bg-white text-slate-950 shadow-[0_12px_30px_-20px_rgba(255,255,255,0.9)]'
-                    : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                    ? 'bg-gradient-to-r from-sky-300 to-emerald-300 text-slate-950 shadow-[0_14px_30px_-20px_rgba(56,189,248,0.8)]'
+                    : 'text-slate-300 hover:bg-slate-800 hover:text-sky-100'
                 }`}
               >
                 {tab}
@@ -147,7 +147,7 @@ export default function MagicPage() {
             </div>
             <a
               href="mailto:bookings@mysto.show?subject=Event%20Booking"
-              className="inline-flex rounded-xl bg-emerald-300 px-5 py-3 text-sm font-semibold text-emerald-950 transition hover:bg-emerald-200"
+              className="inline-flex rounded-xl bg-gradient-to-r from-emerald-300 to-sky-300 px-5 py-3 text-sm font-semibold text-slate-950 shadow-[0_18px_40px_-24px_rgba(56,189,248,0.75)] transition hover:from-emerald-200 hover:to-sky-200"
             >
               Start Booking
             </a>

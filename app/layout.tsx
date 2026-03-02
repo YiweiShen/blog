@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope, Space_Grotesk } from "next/font/google";
 import Header from './components/Header';
+import LayoutChrome from './components/LayoutChrome';
 import "./globals.css";
 import PageContainer from './components/PageContainer';
 const manrope = Manrope({
@@ -40,20 +41,24 @@ export default function RootLayout({
             <div className="absolute left-1/2 top-[-18rem] h-[36rem] w-[56rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(14,165,233,0.24),rgba(14,165,233,0))]" />
             <div className="absolute inset-0 bg-[linear-gradient(to_bottom,#f8fbff_0%,#ffffff_40%,#ffffff_100%)]" />
           </div>
-          <Header />
+          <LayoutChrome>
+            <Header />
+          </LayoutChrome>
           <main className="flex-grow">
             <PageContainer>
               {children}
             </PageContainer>
           </main>
-          <footer className="mt-16 border-t border-slate-200/70 bg-white/80 backdrop-blur">
-            <div className="mx-auto max-w-6xl px-6 py-6 text-center text-sm text-slate-600">
-              &copy; {new Date().getFullYear()} Blog. All rights reserved.
+          <LayoutChrome>
+            <footer className="mt-16 border-t border-slate-200/70 bg-white/80 backdrop-blur">
+              <div className="mx-auto max-w-6xl px-6 py-6 text-center text-sm text-slate-600">
+                &copy; {new Date().getFullYear()} Blog. All rights reserved.
+              </div>
+            </footer>
+            <div className="py-3 text-center text-xs text-slate-500">
+              Built at {process.env.NEXT_PUBLIC_BUILD_TIME} | v{process.env.NEXT_PUBLIC_VERSION}
             </div>
-          </footer>
-          <div className="py-3 text-center text-xs text-slate-500">
-            Built at {process.env.NEXT_PUBLIC_BUILD_TIME} | v{process.env.NEXT_PUBLIC_VERSION}
-          </div>
+          </LayoutChrome>
         </div>
       </body>
     </html>
