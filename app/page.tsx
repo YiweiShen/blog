@@ -27,7 +27,7 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-3 text-sm">
             <Link href="/rss.xml" className="inline-flex rounded-xl border border-slate-300 bg-white px-4 py-2 font-medium text-slate-700 transition hover:border-slate-400 hover:text-slate-900">
-              Subscribe RSS
+              RSS
             </Link>
             <a
               href="https://github.com/YiweiShen/blog"
@@ -35,7 +35,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="inline-flex rounded-xl border border-slate-300 bg-white px-4 py-2 font-medium text-slate-800 transition hover:border-slate-400 hover:text-slate-900"
             >
-              View Source
+              Source Code
             </a>
           </div>
         </div>
