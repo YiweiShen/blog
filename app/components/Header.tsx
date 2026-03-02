@@ -21,7 +21,7 @@ export default function Header() {
         <div className='flex items-center gap-4 md:gap-8'>
           <h1 className='font-[family-name:var(--font-display)] text-xl font-semibold tracking-tight text-slate-950'>
             <Link href='/' className='transition hover:text-sky-600'>
-              yiwei.sh/blog
+              Blog
             </Link>
           </h1>
           <div className='hidden md:block'>
@@ -80,7 +80,7 @@ export default function Header() {
                     href={item.href}
                     className={`inline-flex rounded-xl px-3 py-2 text-sm font-medium transition ${
                       isActive
-                        ? 'bg-slate-900 text-white'
+                        ? 'border border-sky-200 bg-sky-50 text-sky-800'
                         : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
                     }`}
                   >

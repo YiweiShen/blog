@@ -13,7 +13,7 @@ export default function AboutPage() {
         Building useful software with taste and intent.
       </h2>
       <p className="mt-6 max-w-2xl text-lg text-slate-600">
-        Welcome to blog. This space shares notes on engineering craft, developer tools, and the systems behind resilient product teams.
+        Welcome to Blog. This space shares notes on engineering craft, developer tools, and the systems behind resilient product teams.
       </p>
     </section>
   );
