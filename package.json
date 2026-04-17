@@ -43,6 +43,9 @@
     "tailwindcss": "^4.1.10",
     "typescript": "^5"
   },
+  "overrides": {
+    "dompurify": "3.4.0"
+  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "prettier --write",
