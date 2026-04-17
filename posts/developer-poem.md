@@ -1,8 +1,9 @@
 ---
-title: "Developer Poem"
-date: "2025-06-21"
-summary: "A poem about a software developer."
+title: 'Developer Poem'
+date: '2025-06-21'
+summary: 'A poem about a software developer.'
 ---
+
 In lines of code, the mind takes flight,
 We craft tomorrow in silent night.
 Variables dance, algorithms sing,

@@ -1,7 +1,7 @@
 ---
-title: "Claude 4 Prompt Engineering Best Practices"
-date: "2025-07-20"
-summary: "Explore proven techniques to craft clear, context-rich prompts and optimize tool usage for Claude 4 models, maximizing response quality and efficiency."
+title: 'Claude 4 Prompt Engineering Best Practices'
+date: '2025-07-20'
+summary: 'Explore proven techniques to craft clear, context-rich prompts and optimize tool usage for Claude 4 models, maximizing response quality and efficiency.'
 ---
 
 # Claude 4 Prompt Engineering Best Practices
@@ -17,11 +17,13 @@ Claude 4 models have been trained for precise instruction following. By applying
 > Claude 4 responds best to clear, detailed directives. If you want “above-and-beyond” behavior, spell it out explicitly.
 
 **Less effective:**
+
 ```text
 Create an analytics dashboard
 ```
 
 **More effective:**
+
 ```text
 Create an analytics dashboard. Include as many relevant features and interactions as possible. Go beyond the basics to deliver a fully featured implementation.
 ```
@@ -31,11 +33,13 @@ Create an analytics dashboard. Include as many relevant features and interaction
 > Explaining the “why” behind a requirement helps Claude 4 understand your goals and tailor its output.
 
 **Less effective:**
+
 ```text
 NEVER use ellipses
 ```
 
 **More effective:**
+
 ```text
 Your response will be read aloud by a text‑to‑speech engine, so never use ellipses—otherwise the engine won’t know how to pronounce them.
 ```
@@ -66,6 +70,7 @@ There are several effective techniques for steering output formatting:
 > Claude 4’s “thinking” features let you guide its internal reasoning and reflection, which is especially useful for complex or multi‑step tasks.
 
 **Example prompt:**
+
 ```text
 After receiving tool results, carefully reflect on their quality and determine optimal next steps before proceeding. Use your thinking to plan and iterate based on this new information, and then take the best next action.
 ```
@@ -77,6 +82,7 @@ After receiving tool results, carefully reflect on their quality and determine o
 > Claude 4 excels at invoking multiple tools in parallel when prompted, improving efficiency for independent operations.
 
 **Sample agent prompt:**
+
 ```text
 For maximum efficiency, whenever you need to perform multiple independent operations, invoke all relevant tools simultaneously rather than sequentially.
 ```
@@ -86,6 +92,7 @@ For maximum efficiency, whenever you need to perform multiple independent operat
 > Claude 4 sometimes writes temporary files during code generation iterations. To minimize residual files, instruct it to clean up when done.
 
 **Sample prompt:**
+
 ```text
 If you create any temporary files or helper scripts during iteration, remove them at the end of the task.
 ```
@@ -95,9 +102,10 @@ If you create any temporary files or helper scripts during iteration, remove the
 > Encourage detailed, interactive designs by explicitly requesting additional features and polish.
 
 **Sample modifiers:**
-- “Include as many relevant features and interactions as possible.”  
-- “Add thoughtful details like hover states, transitions, and micro‑interactions.”  
-- “Create an impressive demonstration showcasing web development capabilities.”  
+
+- “Include as many relevant features and interactions as possible.”
+- “Add thoughtful details like hover states, transitions, and micro‑interactions.”
+- “Create an impressive demonstration showcasing web development capabilities.”
 - “Apply design principles: hierarchy, contrast, balance, and movement.”
 
 ### Avoid focusing on passing tests and hard‑coding
@@ -105,6 +113,7 @@ If you create any temporary files or helper scripts during iteration, remove the
 > To ensure robust, general solutions, ask Claude 4 to prioritize principled implementations over hard‑coding test cases.
 
 **Sample prompt:**
+
 ```text
 Please implement a high‑quality, general‑purpose solution that works correctly for all valid inputs. Do not hard‑code values or focus solely on passing the provided tests. Instead, implement the underlying logic and design principles necessary for a robust, maintainable solution. If any tests seem infeasible or incorrect, let me know.
 ```
@@ -113,6 +122,6 @@ Please implement a high‑quality, general‑purpose solution that works correct
 
 When upgrading from Sonnet 3.7 to Claude 4, keep these tips in mind:
 
-1. **Be specific about desired behavior.** Describe exactly what you want in the output.  
-2. **Frame your instructions with quality modifiers.** Encourage detail, depth, and polish explicitly.  
+1. **Be specific about desired behavior.** Describe exactly what you want in the output.
+2. **Frame your instructions with quality modifiers.** Encourage detail, depth, and polish explicitly.
 3. **Request advanced features explicitly.** Animations, interactivity, or edge‑case handling should be spelled out if you need them.

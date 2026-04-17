@@ -1,7 +1,7 @@
 ---
 theme: seriph
-background: "https://images.unsplash.com/photo-1454165205744-3b78555e5572?auto=format&fit=crop&w=1600&q=80"
-title: "Business Model Canvas Explained"
+background: 'https://images.unsplash.com/photo-1454165205744-3b78555e5572?auto=format&fit=crop&w=1600&q=80'
+title: 'Business Model Canvas Explained'
 info: |
   A concise walkthrough of the Business Model Canvas, its nine blocks, and how to use it in workshops.
 class: text-left
@@ -14,6 +14,7 @@ mdc: true
 # Business Model Canvas Explained
 
 ## Agenda
+
 - Purpose of the canvas
 - The nine building blocks
 - How to fill it in
@@ -35,14 +36,14 @@ mdc: true
 
 # The Nine Building Blocks
 
-1. **Value Proposition** - the job-to-be-done you solve  
-2. **Customer Segments** - for whom you create value  
-3. **Channels** - how you reach and deliver  
-4. **Customer Relationships** - how you acquire, retain, grow  
-5. **Revenue Streams** - how money comes in  
-6. **Key Resources** - critical assets you need  
-7. **Key Activities** - the work you must excel at  
-8. **Key Partnerships** - outside help and leverage  
+1. **Value Proposition** - the job-to-be-done you solve
+2. **Customer Segments** - for whom you create value
+3. **Channels** - how you reach and deliver
+4. **Customer Relationships** - how you acquire, retain, grow
+5. **Revenue Streams** - how money comes in
+6. **Key Resources** - critical assets you need
+7. **Key Activities** - the work you must excel at
+8. **Key Partnerships** - outside help and leverage
 9. **Cost Structure** - major fixed and variable costs
 
 ---

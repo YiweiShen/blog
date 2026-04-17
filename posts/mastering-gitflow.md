@@ -1,33 +1,35 @@
 ---
-title: "Mastering GitFlow: A Structured Workflow for Scalable Git Development"
-date: "2025-07-06"
-summary: "A guide to implementing GitFlow, covering installation, branch management, core commands, and best practices."
+title: 'Mastering GitFlow: A Structured Workflow for Scalable Git Development'
+date: '2025-07-06'
+summary: 'A guide to implementing GitFlow, covering installation, branch management, core commands, and best practices.'
 ---
 
 # Mastering GitFlow: A Structured Workflow for Scalable Git Development
 
 > Collaborating on complex software projects can get messy without a clear branching strategy. GitFlow, introduced by Vincent Driessen in 2010, provides a robust, opinionated workflow built on Git’s branching model. It helps teams:
 
-- Enforce clear boundaries between ongoing work and production-ready code  
-- Support parallel feature development, scheduled releases, and urgent hotfixes  
+- Enforce clear boundaries between ongoing work and production-ready code
+- Support parallel feature development, scheduled releases, and urgent hotfixes
 - Maintain high-quality standards with minimal merge conflicts
 
 ---
 
 ## 1. Why GitFlow?
 
-1. **Clarity**  
-   - `develop` houses integrated code that’s still evolving.  
-   - `main` (or `master`) always reflects production-ready code.  
+1. **Clarity**
 
-2. **Parallel Workstreams**  
-   - Feature branches off `develop`  
-   - Release branches prepare stabilization  
-   - Hotfix branches patch `main`  
+   - `develop` houses integrated code that’s still evolving.
+   - `main` (or `master`) always reflects production-ready code.
 
-3. **Process Discipline**  
-   - Standardized naming and merge practices  
-   - Automated tooling (git-flow extensions) to scaffold branches  
+2. **Parallel Workstreams**
+
+   - Feature branches off `develop`
+   - Release branches prepare stabilization
+   - Hotfix branches patch `main`
+
+3. **Process Discipline**
+   - Standardized naming and merge practices
+   - Automated tooling (git-flow extensions) to scaffold branches
 
 ---
 
@@ -35,11 +37,11 @@ summary: "A guide to implementing GitFlow, covering installation, branch managem
 
 1. **Install the extension**
 
-   - macOS (Homebrew):  
+   - macOS (Homebrew):
      ```bash
      brew install git-flow-avh
      ```
-   - Linux (APT):  
+   - Linux (APT):
      ```bash
      sudo apt-get install git-flow
      ```
@@ -51,7 +53,9 @@ git init                # if you haven’t already
 git checkout -b develop # create “develop” if needed
 git flow init
 ```
+
 When prompted, you can accept the defaults:
+
 ```text
 Branch name for production releases: [main]
 Branch name for “next release” development: [develop]
@@ -67,15 +71,15 @@ Version tag prefix? [v]
 ## 3. The GitFlow Branching Model
 
 - **main**  
-  Production code, only updated via merges from release or hotfix branches.  
+  Production code, only updated via merges from release or hotfix branches.
 - **develop**  
-  Integration branch for upcoming releases; all finished features go here.  
+  Integration branch for upcoming releases; all finished features go here.
 - **feature/**  
-  Created off `develop` for new functionality (e.g., `feature/cool-login`).  
+  Created off `develop` for new functionality (e.g., `feature/cool-login`).
 - **release/**  
-  Spawned from `develop` when you’re feature-complete; used to stabilize, fix bugs, update docs, bump version numbers (e.g., `release/1.2.0`).  
+  Spawned from `develop` when you’re feature-complete; used to stabilize, fix bugs, update docs, bump version numbers (e.g., `release/1.2.0`).
 - **hotfix/**  
-  Branched from `main` to address urgent production bugs; merged back into both `main` and `develop` (e.g., `hotfix/urgent-fix`).  
+  Branched from `main` to address urgent production bugs; merged back into both `main` and `develop` (e.g., `hotfix/urgent-fix`).
 
 ---
 
@@ -89,8 +93,8 @@ git flow feature start cool-login
 git flow feature finish cool-login
 ```
 
-- `start`: creates `feature/cool-login` from `develop`.  
-- `finish`: merges back into `develop` and deletes the feature branch.  
+- `start`: creates `feature/cool-login` from `develop`.
+- `finish`: merges back into `develop` and deletes the feature branch.
 
 ### 4.2 Preparing a Release
 
@@ -100,11 +104,11 @@ git flow release start 1.2.0
 git flow release finish 1.2.0
 ```
 
-- `start`: creates `release/1.2.0` from `develop`.  
+- `start`: creates `release/1.2.0` from `develop`.
 - `finish`:
-  - merges into `main` and tags `v1.2.0`  
-  - merges into `develop` to carry over fixes  
-  - deletes the `release/1.2.0` branch  
+  - merges into `main` and tags `v1.2.0`
+  - merges into `develop` to carry over fixes
+  - deletes the `release/1.2.0` branch
 
 ### 4.3 Patching Production
 
@@ -114,28 +118,28 @@ git flow hotfix start urgent-fix
 git flow hotfix finish urgent-fix
 ```
 
-- `start`: creates `hotfix/urgent-fix` from `main`.  
+- `start`: creates `hotfix/urgent-fix` from `main`.
 - `finish`:
-  - merges into `main` and tags the new version  
-  - merges into `develop`  
-  - deletes the `hotfix/urgent-fix` branch  
+  - merges into `main` and tags the new version
+  - merges into `develop`
+  - deletes the `hotfix/urgent-fix` branch
 
 ---
 
 ## 5. Tips & Best Practices
 
-- Keep feature branches small and focused; merge often.  
-- Regularly pull/update `develop` to minimize drift.  
-- Tag releases consistently for easy rollback.  
-- Automate tests and CI on merges (especially `develop` → `release` and `release` → `main`).  
-- Use clear, descriptive branch names: `feature/login-oauth`, `hotfix/203-login-error`.  
+- Keep feature branches small and focused; merge often.
+- Regularly pull/update `develop` to minimize drift.
+- Tag releases consistently for easy rollback.
+- Automate tests and CI on merges (especially `develop` → `release` and `release` → `main`).
+- Use clear, descriptive branch names: `feature/login-oauth`, `hotfix/203-login-error`.
 
 ---
 
 ## 6. When to Avoid GitFlow
 
-- Very small teams or solo projects may find GitFlow too heavyweight.  
-- Rapid continuous-deployment pipelines often favor simpler branching (e.g., trunk-based development).  
+- Very small teams or solo projects may find GitFlow too heavyweight.
+- Rapid continuous-deployment pipelines often favor simpler branching (e.g., trunk-based development).
 
 ---
 

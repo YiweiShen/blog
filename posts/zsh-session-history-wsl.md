@@ -1,7 +1,7 @@
 ---
 title: "Zsh Session History Under WSL: Why It Isn't Persistent by Default (and How to Fix It)"
-date: "2025-07-07"
-summary: "Learn how Zsh history works on WSL, why your commands sometimes vanish between sessions, and how to configure your shell for reliable, persistent history."
+date: '2025-07-07'
+summary: 'Learn how Zsh history works on WSL, why your commands sometimes vanish between sessions, and how to configure your shell for reliable, persistent history.'
 ---
 
 # Zsh Session History Under WSL: Why It Isn't Persistent by Default (and How to Fix It)
@@ -14,9 +14,9 @@ If you use Zsh as your interactive shell on Windows Subsystem for Linux (WSL), y
 
 By default, Zsh writes your command history to a file (`$HISTFILE`, often `~/.zsh_history`) when the shell exits. In a typical Linux desktop login:
 
-- You launch a terminal window (starting a new Zsh session).  
-- You type commands. Zsh keeps them in memory.  
-- When you exit, Zsh dumps the in-memory history into `~/.zsh_history`.  
+- You launch a terminal window (starting a new Zsh session).
+- You type commands. Zsh keeps them in memory.
+- When you exit, Zsh dumps the in-memory history into `~/.zsh_history`.
 
 If you open another window after that, it reads the updated history file and you see commands from your last session.
 
@@ -62,9 +62,9 @@ setopt EXTENDED_HISTORY
 
 These options do the heavy lifting:
 
-- **APPEND_HISTORY**: On exit, append the session’s history to `HISTFILE` instead of rewriting the entire file.  
-- **INC_APPEND_HISTORY**: After each command, append it directly to the history file (rather than waiting for shell exit).  
-- **SHARE_HISTORY**: On each prompt, merge the current session’s history with the contents of `HISTFILE`, then append new lines at exit. This keeps all shells in sync.  
+- **APPEND_HISTORY**: On exit, append the session’s history to `HISTFILE` instead of rewriting the entire file.
+- **INC_APPEND_HISTORY**: After each command, append it directly to the history file (rather than waiting for shell exit).
+- **SHARE_HISTORY**: On each prompt, merge the current session’s history with the contents of `HISTFILE`, then append new lines at exit. This keeps all shells in sync.
 
 With this configuration, commands you run in one WSL window appear immediately in other windows, and you lose nothing when you close or reboot your WSL distribution.
 

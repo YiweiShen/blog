@@ -1,15 +1,14 @@
 ---
-title: "Efficient Context Engineering with Submodular Optimization"
-date: "2025-07-14"
-summary: "Discover how submodular optimization offers a principled, efficient framework with theoretical guarantees for context engineering—text selection and passage reranking—and explore practical examples."
+title: 'Efficient Context Engineering with Submodular Optimization'
+date: '2025-07-14'
+summary: 'Discover how submodular optimization offers a principled, efficient framework with theoretical guarantees for context engineering—text selection and passage reranking—and explore practical examples.'
 ---
 
 # Efficient Context Engineering with Submodular Optimization
 
-
 Last month, during my deep dive into [submodular optimization for fan‑out queries in DeepResearch](https://jina.ai/news/submodular-optimization-for-diverse-query-generation-in-deepresearch), I stumbled upon an intriguing challenge: How do we pack the most meaningful bits of text into a limited context window without repeating ourselves? In this investigation, I followed the trail of research papers, notebook experiments, and code repositories to uncover a surprising answer: submodular optimization.
 
-Imagine you’re a museum curator faced with hundreds of artifacts and only room for a handful. You want the collection to represent the whole exhibit: no two items that tell the same story, yet together they weave a coherent narrative. That tension between *coverage* and *redundancy* is at the heart of two critical tasks in modern AI workflows:
+Imagine you’re a museum curator faced with hundreds of artifacts and only room for a handful. You want the collection to represent the whole exhibit: no two items that tell the same story, yet together they weave a coherent narrative. That tension between _coverage_ and _redundancy_ is at the heart of two critical tasks in modern AI workflows:
 
 1. **Text Selection**: Extracting the richest sentences or passages from a document under a token‑budget constraint.
 2. **Passage Reranking**: Ordering candidate snippets so that top results are both relevant to a query and diverse from each other.
@@ -20,7 +19,7 @@ Both problems ask, “Which pieces of text are most valuable, given diminishing 
 
 ## What Is Submodularity, Really?
 
-At its core, a submodular function captures the principle of *diminishing returns*. As you collect more items, each additional one tends to offer a smaller marginal gain. Formally, for any two sets $A \subseteq B$ and item $i\notin B$:
+At its core, a submodular function captures the principle of _diminishing returns_. As you collect more items, each additional one tends to offer a smaller marginal gain. Formally, for any two sets $A \subseteq B$ and item $i\notin B$:
 
 $$
 f(A \cup \{i\}) - f(A)
@@ -56,7 +55,7 @@ where $\mathrm{cosim}(\cdot,\cdot)$ is cosine similarity. Intuitively, each sent
 
 ### Lazy Greedy to the Rescue
 
-I applied the classic *lazy greedy* algorithm:
+I applied the classic _lazy greedy_ algorithm:
 
 ```python
 selected = set()
@@ -77,7 +76,7 @@ In minutes, I had ten sentences that told the story arc of the meeting: design d
 
 ## Case Study 2: Passage Reranking for Diverse Search Results
 
-Next, I turned my attention to search. Suppose you query “impact of climate policy,” and a pointwise reranker returns ten almost‑identical news snippets about a single bill. Boring. We want the top results to be *both* relevant and varied.
+Next, I turned my attention to search. Suppose you query “impact of climate policy,” and a pointwise reranker returns ten almost‑identical news snippets about a single bill. Boring. We want the top results to be _both_ relevant and varied.
 
 ### Blending Relevance with Diversity
 
@@ -114,11 +113,11 @@ This variant caps coverage by each passage’s own relevance, so you don’t ove
 I ran lazy greedy on both functions and watched the result. The top‑5 lists shifted subtly:
 
 | Rank | Pointwise | Facility Loc. | Saturated |
-|:----:|:---------:|:-------------:|:---------:|
-| 1    | Snippet A | Snippet A     | Snippet A |
-| 2    | Snippet B | Snippet C     | Snippet D |
-| 3    | Snippet C | Snippet B     | Snippet B |
-| …    | …         | …             | …         |
+| :--: | :-------: | :-----------: | :-------: |
+|  1   | Snippet A |   Snippet A   | Snippet A |
+|  2   | Snippet B |   Snippet C   | Snippet D |
+|  3   | Snippet C |   Snippet B   | Snippet B |
+|  …   |     …     |       …       |     …     |
 
 Suddenly, the reranked results read like a mini‑survey of the topic, not an echo chamber.
 
@@ -126,13 +125,13 @@ Suddenly, the reranked results read like a mini‑survey of the topic, not an ec
 
 ## Lessons Learned & Next Steps
 
-1. **Context Engineering Is an Art and a Science**  \
+1. **Context Engineering Is an Art and a Science** \
    Heuristic prompts can work, but submodularity delivers guarantees: you know you’re within $(1 - 1/e)$ of optimal.
-2. **Lazy Greedy Means Speed**  \
+2. **Lazy Greedy Means Speed** \
    In practice, the “lazy” trick reduces similarity computations by 70–90%.
-3. **Automatic Stopping**  \
+3. **Automatic Stopping** \
    When marginal gains fall below a threshold, the algorithm signals that it’s time to stop adding more snippets.
-4. **Multi‑Query Extensions**  \
+4. **Multi‑Query Extensions** \
    Need to optimize for several queries at once? Just sum their submodular scores and run the same pipeline.
 
 I’ve packaged all experiments into two Colab notebooks so you can follow the breadcrumbs yourself.
@@ -141,6 +140,6 @@ I’ve packaged all experiments into two Colab notebooks so you can follow the b
 
 ### Try It Yourself
 
-- [GitHub Repo](https://github.com/jina-ai/submodular-optimization)  \
-- [Text Selection Notebook](https://colab.research.google.com/drive/1J4kLSGTkcR59jM5Xc2EbIkJtoQ0CdbPE)  \
+- [GitHub Repo](https://github.com/jina-ai/submodular-optimization) \
+- [Text Selection Notebook](https://colab.research.google.com/drive/1J4kLSGTkcR59jM5Xc2EbIkJtoQ0CdbPE) \
 - [Passage Reranking Notebook](https://colab.research.google.com/drive/1gMc1Bf9Lk6HqXSoA6PyMblOb943-Pgjt?usp=sharing)

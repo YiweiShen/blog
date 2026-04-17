@@ -4,7 +4,7 @@ module.exports = {
   content: [
     './app/**/*.{js,ts,jsx,tsx}',
     './app/components/**/*.{js,ts,jsx,tsx}',
-    './lib/**/*.{js,ts,jsx,tsx}'
+    './lib/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     container: {
@@ -52,4 +52,4 @@ module.exports = {
     },
   },
   plugins: [],
-};
+}

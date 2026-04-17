@@ -1,7 +1,7 @@
 ---
-title: "How Developers Can Collaborate with AI"
-date: "2025-06-20"
-summary: "Unlock the full potential of AI in your development workflow with practical strategies and examples."
+title: 'How Developers Can Collaborate with AI'
+date: '2025-06-20'
+summary: 'Unlock the full potential of AI in your development workflow with practical strategies and examples.'
 ---
 
 # How Developers Can Collaborate with AI
@@ -11,11 +11,13 @@ Imagine having a coding partner who never sleeps, constantly scans through docum
 ## 1. Know What AI Does Best (and Where It Falls Short)
 
 AI excels at:
+
 - Generating boilerplate code (CRUD endpoints, component scaffolds).
 - Rapidly exploring alternatives (refactoring suggestions, naming ideas).
 - Summarizing large codebases or documentation.
 
 However, AI can:
+
 - Introduce subtle bugs or outdated patterns.
 - Miss business context or edge cases.
 - Struggle with deeply domain-specific logic.
@@ -23,6 +25,7 @@ However, AI can:
 ## 2. Craft Clear, Context-Rich Prompts
 
 The better your prompt, the more reliable the result. Include:
+
 - **Your goal**: “Create a GraphQL resolver that ...”
 - **Context**: small snippets of existing code or folder structure.
 - **Constraints**: coding style, supported frameworks, performance needs.

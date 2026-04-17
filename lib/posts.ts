@@ -75,7 +75,10 @@ export function getPostBySlug(slug: string): Post {
   const processed = remark().use(html).processSync(content)
   let contentHtml = processed.toString()
   // Remove the first H1 heading (and any leading whitespace or BOM) from markdown content to avoid duplicate titles
-  contentHtml = contentHtml.replace(/^[\uFEFF\s]*<h1[^>]*>[\s\S]*?<\/h1>\s*/i, '')
+  contentHtml = contentHtml.replace(
+    /^[\uFEFF\s]*<h1[^>]*>[\s\S]*?<\/h1>\s*/i,
+    ''
+  )
   return {
     content: contentHtml,
     ...(frontMatter as PostMeta),

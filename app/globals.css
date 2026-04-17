@@ -1,7 +1,8 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  --font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, SFMono-Regular,
+    Menlo, monospace;
   --bg: #f8fbff;
   --surface: #ffffff;
   --foreground: #0f172a;
